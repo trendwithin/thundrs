@@ -16,9 +16,6 @@
 !/log/.keep
 /tmp
 
-#Ignore secret.yml
-/config/secrets.yml
-
 #Ignore local . files
 .DS_Store
 .env
