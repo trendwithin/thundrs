@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @memory.name %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @memory.keywords %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @memory.description %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @memory.creator %>
+</p>
+
+<%= link_to 'Edit', edit_memory_path(@memory) %> |
+<%= link_to 'Back', memories_path %>

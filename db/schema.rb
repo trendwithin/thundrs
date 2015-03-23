@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323224214) do
+ActiveRecord::Schema.define(version: 20150323225455) do
+
+  create_table "memories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "keywords"
+    t.text     "description"
+    t.integer  "creator_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "memories", ["creator_id"], name: "index_memories_on_creator_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",               default: "", null: false
