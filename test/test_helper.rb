@@ -22,7 +22,6 @@ class ActiveSupport::TestCase
   end
 
   def page_must_include_memory(memory_data)
-    memory = Memory.find_by_name(memory_data.name)
     page.text.must_include memory_data.name
     page.text.must_include memory_data.keywords
     page.text.must_include memory_data.description
@@ -32,7 +31,6 @@ class ActiveSupport::TestCase
   end
 
   def page_wont_include_memory(memory_data)
-    memory = Memory.find_by_name(memory_data.name)
     page.text.wont_include memory_data.name
     page.text.wont_include memory_data.keywords
     page.text.wont_include memory_data.description
