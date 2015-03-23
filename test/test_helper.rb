@@ -27,10 +27,9 @@ end
 
 def sign_in(user = nil)
   visit new_user_session_path
-
   email = user ? user.email : users(:users_1).email
   password = "password"
-  fill_in "Email", with :email
-  fill_in "Password", with password
+  fill_in "Email", with: email
+  fill_in "Password", with: password
   page.find('#login-button').click
 end

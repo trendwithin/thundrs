@@ -7,10 +7,7 @@ end
 
 feature "User Sign In" do
   scenario "Successful log in to site" do
-    visit root_path
-    click_on "Sign in"
-    click_on 'Log in'
-
+    sign_in(users(:user_1))
     page.must_have_content "Signed in successfully"
     page.wont_have_content "Error"
   end
