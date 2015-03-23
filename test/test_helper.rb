@@ -24,3 +24,13 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Assertions
 end
+
+def sign_in(user = nil)
+  visit new_user_seesion_path
+
+  email = user ? user.email : users(:users_1).email
+  password = "password"
+  fill_in "Email", with :email
+  fill_in "Password", with password
+  page.find('#login-button').click
+end
