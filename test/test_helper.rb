@@ -27,6 +27,9 @@ class ActiveSupport::TestCase
     page.text.must_include memory_data.name
     page.text.must_include memory_data.keywords
     page.text.must_include memory_data.description
+    # TODO: this is going to throw ambiguous selector errors:
+    page.find("#memory .memory-image")['src'].must_have_content memory.image_src
+    # will need to find a way to loop through the images and make sure one of them is the one we are looking for
   end
 
   def page_wont_include_memory(memory_data)
@@ -34,6 +37,9 @@ class ActiveSupport::TestCase
     page.text.wont_include memory_data.name
     page.text.wont_include memory_data.keywords
     page.text.wont_include memory_data.description
+    assert_raise Capybara::ElementNotFound do
+      page.find("#memory .memory-image[src=#{memory_data.image_src}]")
+    end
   end
 end
 
