@@ -12,7 +12,7 @@ feature "Visiting The HomePage" do
 
     fill_in "Name", with: user(:user_1).name
     fill_in "Email", with: users(:user_1).email
-    fill_in "Password", with: users(:user_1).password
+    fill_in "Password", with: "password"
     fill_in "Password Confirmation", with: "password"
     click_on "Register"
 
