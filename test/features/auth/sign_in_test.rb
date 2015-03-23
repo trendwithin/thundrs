@@ -1,12 +1,14 @@
 require "test_helper"
 
+before :each do
+  @user = users :user_1
+  sign_in @user
+end
+
 feature "User Sign In" do
   scenario "Successful log in to site" do
     visit root_path
     click_on "Sign in"
-
-    fill_in "Email", with: users(:user_1).email
-    fill_in "Password", with: (:user_1).password
     click_on 'Log in'
 
     page.must_have_content "Signed in successfully"

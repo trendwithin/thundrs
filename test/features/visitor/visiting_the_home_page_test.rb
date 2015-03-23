@@ -10,10 +10,10 @@ feature "Visiting The HomePage" do
     visit root_path
     click_on "Sign up"
 
-    fill_in "Name", with: visitors(:visitor_1).name
-    fill_in "Email", with: visitors(:visitor_1).email
-    fill_in "Password", with: visitors(:visitor_1).password
-    fill_in "Password Confirmation", with: visitors(:visitor_1).password
+    fill_in "Name", with: user(:user_1).name
+    fill_in "Email", with: users(:user_1).email
+    fill_in "Password", with: users(:user_1).password
+    fill_in "Password Confirmation", with: "password"
     click_on "Register"
 
     page.content.must_include "Welcome! You have been successfully registered."
@@ -30,12 +30,45 @@ feature "Visiting The HomePage" do
     page.text.must_include "Password can't be blank"
   end
 
+  scenario "Visitor Email must not be too long" do
+    user(:user_1).email.length < ("a" * 244 + "@example.com").length
+  end
+
   scenario "Visitor Email must be unique" do
-    skip
+    visit root_path
+    click_on "Sign up"
+    fill_in "Name", with: "name"
+    fill_in "Email", with: users(:user_1).email
+    fill_in "Password", with: "password"
+    click_on "Register"
+
+    page.text.must_include "Invalid Email"
+  end
+
+  scenario "Visitor Email must meet is in valid format" do
+    visit root_path
+    click_on "Sign up"
+    fill_in "Name", with: "name"
+    fill_in "Email", with: "a@bc.om"
+    fill_in "Password", with: "password"
+
+    page.text.wont_include "Invalid Email Format"
   end
 
   scenario "Visitor Name must be unique" do
-    skip
+    visit root_path
+    click_on "Sign up"
+    fill_in "Name", with: users(:user_1).name
+    fill_in "Email", with: "test_test@example.com"
+    fill_in "Passowrd", with: "password"
+    click_on "Register"
+
+    page.text.must_include "Invalid Name"
+
+  end
+
+  scenario "Visitor Name must not be too long"
+    user(:user_1).name.length < ("a" * 50).length
   end
 
   scenario "Vistor Sign up through Twitter" do

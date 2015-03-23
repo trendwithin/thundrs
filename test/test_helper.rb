@@ -26,7 +26,7 @@ class ActionDispatch::IntegrationTest
 end
 
 def sign_in(user = nil)
-  visit new_user_seesion_path
+  visit new_user_session_path
 
   email = user ? user.email : users(:users_1).email
   password = "password"
