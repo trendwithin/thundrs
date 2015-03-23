@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323225455) do
+ActiveRecord::Schema.define(version: 20150323230030) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "memory_id"
+    t.boolean  "approved",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id"
+  add_index "comments", ["memory_id"], name: "index_comments_on_memory_id"
 
   create_table "memories", force: :cascade do |t|
     t.string   "name"
