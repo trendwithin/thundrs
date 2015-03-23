@@ -9,15 +9,32 @@ require "minitest/pride"
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 class ActiveSupport::TestCase
-    ActiveRecord::Migration.check_pending!
+  ActiveRecord::Migration.check_pending!
 
-    # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def submit_memory_form(memory_data)
+    visit new_memory_path
+    fill_in "Name", with: memory_data.name
+    fill_in "Keywords", with: memory_data.keywords
+    fill_in "Description", with: memory_data.description
+    # TODO: test image upload?
+    page.find('#create-button').click
+  end
+
+  def page_must_include_memory(memory_data)
+    memory = Memory.find_by_name(memory_data.name)
+    page.text.must_include memory_data.name
+    page.text.must_include memory_data.keywords
+    page.text.must_include memory_data.description
+  end
+
+  def page_wont_include_memory(memory_data)
+    memory = Memory.find_by_name(memory_data.name)
+    page.text.wont_include memory_data.name
+    page.text.wont_include memory_data.keywords
+    page.text.wont_include memory_data.description
+  end
 end
 
 class ActionDispatch::IntegrationTest
