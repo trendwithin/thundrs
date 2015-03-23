@@ -10,7 +10,7 @@ feature "As a user, I want to edit the details of my memories" do
     # given one of their own memories
     memory = memories :user1_memory
 
-    # when viewing that memory's detail page
+    # when a user visits that memory's detail page
     visit memory_path(memory)
 
     # then an edit button is visible, and it leads to an edit form
@@ -22,7 +22,7 @@ feature "As a user, I want to edit the details of my memories" do
     # given another user's memory
     memory = memories :user2_memory
 
-    # when viewing that memory's detail page
+    # when a user visits that memory's detail page
     visit memory_path(memory)
 
     # there will not be an edit button
@@ -35,7 +35,7 @@ feature "As a user, I want to edit the details of my memories" do
     # given another user's memory
     memory = memories :user2_memory
 
-    # when the edit path is visited
+    # when a user goes to the edit path
     visit edit_memory_path(memory)
 
     # the user will be redirected
@@ -44,10 +44,10 @@ feature "As a user, I want to edit the details of my memories" do
   end
 
   scenario "memory details can be changed" do
-    # given a memory
+    # given their own memory
     memory = memories :user1_memory
 
-    # when that memory is changed on the edit form
+    # when a user changes that memory on the edit form
     visit edit_memory_path(memory)
     memory.name = "Edited memory"
     memory.keywords += " edit revise change"

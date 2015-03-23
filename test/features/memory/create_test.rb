@@ -53,7 +53,7 @@ feature "As a user, I would like to create memories with photos, keywords, and d
   end
 
   scenario "memories cannot be created without a description" do
-    # given a memory information without a description
+    # given memory information without a description
     @memory.description = ""
 
     # when submitting the create form
