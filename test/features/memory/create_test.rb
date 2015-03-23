@@ -1,11 +1,14 @@
 require "test_helper"
 
 feature "As a user, I would like to create memories with photos, keywords, and descriptions" do
-  scenario "the memory index has a link to a new memory form" do
-    # given a signed in user
-    user = users :user1
-    sign_in user
+  before do
+    @user = users :user1
+    sign_in @user
 
+    @memory = memories :new_memory
+  end
+
+  scenario "the memory index has a link to a new memory form" do
     # when visiting the memory index
     visit memories_path
 
@@ -15,36 +18,59 @@ feature "As a user, I would like to create memories with photos, keywords, and d
   end
 
   scenario "memories can be created from the new memory form" do
-    # given a signed in user
-    user = users :user1
-    sign_in user
-
-    # and given data for a memory
-    memory_data = memories :new_memory
-
     # when the new memory form is submitted
-    submit_memory_form(memory_data)
+    submit_memory_form(@memory)
 
     # then the user should be shown the created memory
     current_path.must_equal memory_path(memory)
-    page_must_include_memory(memory_data)
+    page_must_include_memory(@memory)
   end
 
   scenario "memories cannot be created without a name" do
-    # given a signed in user
-    user = users :user1
-    sign_in user
-
-    # and given memory information without a name
-    memory_data = memories :new_memory
-    memory_data.name = ""
+    # given a memory with a blank name
+    @memory.name = ""
 
     # when submitting the create form
-    submit_memory_form(memory_data)
+    submit_memory_form(@memory)
 
     # then the form should remain and an error should be displayed
     current_path.must_equal new_memory_path
     page.text.must_include "could not be saved"
     page.text.must_include "Name is a required field"
+  end
+
+  scenario "memories cannot be created without at least one keyword" do
+    # given a memory without any keywords
+    @memory.keywords = ""
+
+    # when submitting the create form
+    submit_memory_form(@memory)
+
+    # then the form should remain and an error should be displayed
+    current_path.must_equal new_memory_path
+    page.text.must_include "could not be saved"
+    page.text.must_include "at least one keyword"
+  end
+
+  scenario "memories cannot be created without a description" do
+    # given a memory information without a description
+    @memory.description = ""
+
+    # when submitting the create form
+    submit_memory_form(@memory)
+
+    # then the form should remain and an error should be displayed
+    current_path.must_equal new_memory_path
+    page.text.must_include "could not be saved"
+    page.text.must_include "must have a description"
+  end
+
+  scenario "new memories are added to the user's memory index" do
+    # when the new memory form is submitted
+    submit_memory_form(@memory)
+
+    # then the memory should be on the memory index page
+    visit memories_path
+    page_must_include_memory(@memory)
   end
 end
