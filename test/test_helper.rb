@@ -13,6 +13,15 @@ class ActiveSupport::TestCase
 
   fixtures :all
 
+  def sign_in(user = nil)
+    visit new_user_session_path
+    email = user ? user.email : users(:users_1).email
+    password = "password"
+    fill_in "Email", with: email
+    fill_in "Password", with: password
+    page.find('#login-button').click
+  end
+
   def submit_memory_form(memory_data)
     fill_in "Name", with: memory_data.name
     fill_in "Keywords", with: memory_data.keywords
@@ -43,13 +52,4 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Assertions
-end
-
-def sign_in(user = nil)
-  visit new_user_session_path
-  email = user ? user.email : users(:users_1).email
-  password = "password"
-  fill_in "Email", with: email
-  fill_in "Password", with: password
-  page.find('#login-button').click
 end
