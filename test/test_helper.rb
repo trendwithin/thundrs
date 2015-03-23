@@ -27,9 +27,9 @@ class ActiveSupport::TestCase
     page.text.must_include memory_data.name
     page.text.must_include memory_data.keywords
     page.text.must_include memory_data.description
-    # TODO: this is going to throw ambiguous selector errors:
-    page.find("#memory .memory-image")['src'].must_have_content memory.image_src
-    # will need to find a way to loop through the images and make sure one of them is the one we are looking for
+    # TODO: this next test is a little weird. If it's nil, it will actually raise an error, but not sure
+    #       how best to check for that
+    page.find("#memory .memory-image[src=#{memory_data.image_src}]").wont_be_nil
   end
 
   def page_wont_include_memory(memory_data)
