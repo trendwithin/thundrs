@@ -45,7 +45,7 @@ feature "Visiting The HomePage" do
     page.text.must_include "Invalid Email"
   end
 
-  scenario "Visitor Email must meet is in valid format" do
+  scenario "Visitor Email must be valid" do
     visit root_path
     click_on "Sign up"
     fill_in "Name", with: "name"
@@ -58,7 +58,7 @@ feature "Visiting The HomePage" do
   scenario "Visitor Name must be unique" do
     visit root_path
     click_on "Sign up"
-    fill_in "Name", with: users(:user_1).name
+    fill_in "Name", with: users(:user_1).username
     fill_in "Email", with: "test_test@example.com"
     fill_in "Passowrd", with: "password"
     click_on "Register"
@@ -67,11 +67,10 @@ feature "Visiting The HomePage" do
   end
 
   scenario "Visitor Name must not be too long" do
-    user(:user_1).name.length < ("a" * 50).length
+    user(:user_1).username.length < ("a" * 50).length
   end
 
   scenario "Vistor Sign up through Twitter" do
-    skip
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(:twitter,
                             {
@@ -84,12 +83,5 @@ feature "Visiting The HomePage" do
 
     click_on "Sign up with Twitter"
     page.must_have_content "Logged in as test_twitter_user"
-  end
-
-  scenario "Visitor unable to Sign up through Twitter" do
-    skip
-    visit root_path
-    click_on "Sign in with Twitter"
-    page.wont_have_content "Logged in as"
   end
 end
