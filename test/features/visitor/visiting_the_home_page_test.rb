@@ -41,7 +41,7 @@ feature "Visiting The HomePage" do
     fill_in "Email", with: users(:user_1).email
     fill_in "Password", with: "password"
     click_on "Register"
-
+    render edit_sign_up_path
     page.text.must_include "Invalid Email"
   end
 
@@ -51,8 +51,8 @@ feature "Visiting The HomePage" do
     fill_in "Name", with: "name"
     fill_in "Email", with: "a@bc.om"
     fill_in "Password", with: "password"
-
-    page.text.wont_include "Invalid Email Format"
+    render edit_sign_up_path
+    page.text.must_include "Invalid Email Format"
   end
 
   scenario "Visitor Name must be unique" do
@@ -62,12 +62,11 @@ feature "Visiting The HomePage" do
     fill_in "Email", with: "test_test@example.com"
     fill_in "Passowrd", with: "password"
     click_on "Register"
-
+    render edit_sign_up_path
     page.text.must_include "Invalid Name"
-
   end
 
-  scenario "Visitor Name must not be too long"
+  scenario "Visitor Name must not be too long" do
     user(:user_1).name.length < ("a" * 50).length
   end
 
@@ -75,10 +74,10 @@ feature "Visiting The HomePage" do
     skip
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(:twitter,
-                            {
-                            uid: '12345',
-                            info: { nickname: 'test_twitter_user'},
-                            })
+      {
+      uid: '12345',
+      info: { nickname: 'test_twitter_user' },
+      })
     visit root_path
     Capybara.current_session.driver.request.env['devise.mapping'] = Devise.mappings[:user]
     Capybara.current_session.driver.request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:twitter]
@@ -93,5 +92,4 @@ feature "Visiting The HomePage" do
     click_on "Sign in with Twitter"
     page.wont_have_content "Logged in as"
   end
-
 end
