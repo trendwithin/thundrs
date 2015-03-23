@@ -14,7 +14,6 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def submit_memory_form(memory_data)
-    visit new_memory_path
     fill_in "Name", with: memory_data.name
     fill_in "Keywords", with: memory_data.keywords
     fill_in "Description", with: memory_data.description
