@@ -9,3 +9,8 @@ user2_memory:
   keywords: bad memory
   description: Seriously. Anyone?
   creator: user_2
+
+new_memory:
+  name: I don't recall
+  keywords: Peter
+  description: Amazing Performace
