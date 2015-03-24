@@ -12,7 +12,6 @@ feature "As a user, I would like to create memories with photos, keywords, and d
     # when visiting the memory index
     visit memories_path
     # then a link to the create form should exist
-    #page.find('#create-memory-button').click
     click_link 'New Memory'
     current_path.must_equal new_memory_path
   end
@@ -73,5 +72,4 @@ feature "As a user, I would like to create memories with photos, keywords, and d
     visit memories_path
     page_must_include_memory(@memory)
   end
-
 end
