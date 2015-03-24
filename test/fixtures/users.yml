@@ -1,12 +1,11 @@
 user_1:
-  name: Secretariat
+  username: Secretariat
   email: exacta_box@example.com
-  password: password
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
 
 user_2:
-  name: Citation
+  username: Citation
   email: trifecta@example.com
-  password: password2
 
 user_3:
   username: Randy Newman

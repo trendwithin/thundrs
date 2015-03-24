@@ -19,12 +19,12 @@ class ActiveSupport::TestCase
     password = "password"
     fill_in "Email", with: email
     fill_in "Password", with: password
-    page.find('#signin-button').click
+    click_button 'Log in'
   end
 
   def sign_out
     visit root_path
-    page.find("#signout-button").click
+    click_link 'Logout'
   end
 
   def switch_signed_in_user(user = nil)
