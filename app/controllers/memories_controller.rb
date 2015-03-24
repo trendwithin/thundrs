@@ -10,6 +10,8 @@ class MemoriesController < ApplicationController
   # GET /memories/1
   # GET /memories/1.json
   def show
+    # new comment for form helper
+    @comment = Comment.new
   end
 
   # GET /memories/new

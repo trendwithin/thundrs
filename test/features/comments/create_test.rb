@@ -14,8 +14,8 @@ feature "As a user, I would like to comment on other user's memories" do
     visit memory_path(@memory)
 
     # then a form and button for leaving a comment are visible
-    page.find("#comment_body").wont_be_empty
-    page.find("#save_comment_button").wont_be_empty
+    page.find("#comment_body")
+    page.find("#comment_save")
   end
 
   scenario "comments can be created" do
