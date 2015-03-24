@@ -10,7 +10,7 @@ feature "Visiting The HomePage" do
     visit root_path
     click_on "Sign up"
 
-    fill_in "Name", with: user(:user_1).name
+    fill_in "Name", with: user(:user_1).username
     fill_in "Email", with: users(:user_1).email
     fill_in "Password", with: "password"
     fill_in "Password Confirmation", with: "password"
