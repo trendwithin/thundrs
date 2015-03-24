@@ -10,13 +10,13 @@ feature "Visiting The HomePage" do
     visit root_path
     click_on "Sign up"
 
-    fill_in "Name", with: user(:user_1).username
-    fill_in "Email", with: users(:user_1).email
+    fill_in "Username", with: "Maude"
+    fill_in "Email", with: "then@theres.com"
     fill_in "Password", with: "password"
-    fill_in "Password Confirmation", with: "password"
-    click_on "Register"
+    fill_in "Password confirmation", with: "password"
+    click_button "Sign up"
 
-    page.content.must_include "Welcome! You have been successfully registered."
+    page.text.must_include "You have signed up successfully"
     page.wont_have_content "There was a problem with your registration."
   end
 
@@ -24,50 +24,65 @@ feature "Visiting The HomePage" do
     visit root_path
     click_on "Sign up"
     fill_in "Email", with: "EMD"
-    click_on "Register"
+    click_button "Sign up"
 
-    page.text.must_include "Invalid Email"
+    page.text.must_include "Email is invalid"
     page.text.must_include "Password can't be blank"
   end
 
   scenario "Visitor Email must not be too long" do
-    user(:user_1).email.length < ("a" * 244 + "@example.com").length
+    users(:user_1).email.length < ("a" * 244 + "@example.com").length
   end
 
   scenario "Visitor Email must be unique" do
     visit root_path
     click_on "Sign up"
-    fill_in "Name", with: "name"
+    fill_in "Username", with: "name"
     fill_in "Email", with: users(:user_1).email
     fill_in "Password", with: "password"
-    click_on "Register"
-    render edit_sign_up_path
-    page.text.must_include "Invalid Email"
+    click_button "Sign up"
+
+    page.text.must_include "Email has already been taken"
   end
 
   scenario "Visitor Email must be valid" do
     visit root_path
     click_on "Sign up"
-    fill_in "Name", with: "name"
-    fill_in "Email", with: "a@bc.om"
+    fill_in "Username", with: "name"
+    fill_in "Email", with: "abc@.com"
     fill_in "Password", with: "password"
-    render edit_sign_up_path
-    page.text.must_include "Invalid Email Format"
+    fill_in "Password confirmation", with: "password"
+    click_button "Sign up"
+
+    page.text.must_include "Email is invalid"
   end
 
-  scenario "Visitor Name must be unique" do
+  scenario "Vistor Password Confirmation Doesn't Match" do
     visit root_path
     click_on "Sign up"
-    fill_in "Name", with: users(:user_1).username
+    fill_in "Username", with: "name"
+    fill_in "Email", with: "abc@xyz.com"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "word"
+    click_button "Sign up"
+
+    page.text.must_include "Password confirmation"
+  end
+
+  scenario "Visitor Username must be unique" do
+    visit root_path
+    click_on "Sign up"
+    fill_in "Username", with: users(:user_1).username
     fill_in "Email", with: "test_test@example.com"
-    fill_in "Passowrd", with: "password"
-    click_on "Register"
-    render edit_sign_up_path
-    page.text.must_include "Invalid Name"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
+    click_button "Sign up"
+
+    page.text.must_include ""
   end
 
   scenario "Visitor Name must not be too long" do
-    user(:user_1).username.length < ("a" * 50).length
+    users(:user_1).username.length < ("a" * 50).length
   end
 
   scenario "Vistor Sign up through Twitter" do
