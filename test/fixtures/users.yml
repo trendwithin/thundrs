@@ -1,9 +1,9 @@
 user_1:
-  name: Secretariat
+  username: Secretariat
   email: exacta_box@example.com
-  password: password
+
 
 user_2:
-  name: Citation
+  username: Citation
   email: trifecta@example.com
-  password: password2
+
