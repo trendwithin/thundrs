@@ -19,7 +19,8 @@ class ActiveSupport::TestCase
     password = "password"
     fill_in "Email", with: email
     fill_in "Password", with: password
-    page.find('#login-button').click
+    save_and_open_page
+    click_button 'Log in'
   end
 
   def submit_memory_form(memory_data)

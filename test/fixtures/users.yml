@@ -1,7 +1,7 @@
 user_1:
   username: Secretariat
   email: exacta_box@example.com
-
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
 
 user_2:
   username: Citation
