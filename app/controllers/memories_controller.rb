@@ -1,10 +1,10 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
-
+  after_action :verify_authorized
   # GET /memories
   # GET /memories.json
   def index
-    @memories = Memory.all
+    @memories = policy_scope(Memory)
   end
 
   # GET /memories/1
@@ -20,6 +20,7 @@ class MemoriesController < ApplicationController
   def create
     @memory = Memory.new(memory_params)
 
+    authorize @memory
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
     else
@@ -28,6 +29,7 @@ class MemoriesController < ApplicationController
   end
 
   def update
+    authorize @memory
     if @memory.update(memory_params)
       redirect_to @memory, notice: 'Memory was successfully updated.'
     else
