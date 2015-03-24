@@ -4,7 +4,7 @@ feature "As a user, I would like to comment on other user's memories" do
   before do
     # given a logged in user and a memory
     @user = users :user_1
-    sign_in user
+    sign_in @user
     @memory = memories :user2_memory
     @comment = comments :new_comment
   end
