@@ -1,6 +1,6 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, only: [:update]
+  after_action :verify_authorized, only: [:update, :edit]
   # GET /memories
   # GET /memories.json
   def index
@@ -14,13 +14,17 @@ class MemoriesController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    authorize @memory
+  end
+
   # GET /memories/new
   def new
     @memory = Memory.new
   end
 
   def create
-    @memory = Memory.new(memory_params)
+    @memory = current_user.memories.build(memory_params)
 
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'

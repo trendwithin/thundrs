@@ -46,7 +46,6 @@ feature "As a user, I would like to create memories with photos, keywords, and d
     submit_memory_form(@memory)
 
     # then the form should remain and an error should be displayed
-    page.text.must_include "Keywords is too short"
     page.text.must_include "Keywords can't be blank"
   end
 
@@ -60,7 +59,6 @@ feature "As a user, I would like to create memories with photos, keywords, and d
 
     # then the form should remain and an error should be displayed
     page.text.must_include "Description can't be blank"
-    page.text.must_include "Description is too short"
   end
 
   scenario "new memories are added to the user's memory index" do
