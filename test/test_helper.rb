@@ -19,8 +19,17 @@ class ActiveSupport::TestCase
     password = "password"
     fill_in "Email", with: email
     fill_in "Password", with: password
-    save_and_open_page
     click_button 'Log in'
+  end
+
+  def sign_out
+    visit root_path
+    page.find("#signout-button").click
+  end
+
+  def switch_signed_in_user(user = nil)
+    sign_out
+    sign_in user
   end
 
   def submit_memory_form(memory_data)
@@ -47,6 +56,21 @@ class ActiveSupport::TestCase
     assert_raise Capybara::ElementNotFound do
       page.find("#memory .memory-image[src=#{memory_data.image_src}]")
     end
+  end
+
+  def submit_comment_form(comment_data)
+    fill_in "#comment_body", with: comment_data.body
+    page.find("#save_comment_button").click
+  end
+
+  def page_must_include_comment(comment_data)
+    page.text.must_include comment_data.body
+    page.text.must_include comment_data.author.username
+  end
+
+  def page_wont_include_comment(comment_data)
+    page.text.must_include comment_data.body
+    page.text.must_include comment_data.author.username
   end
 end
 
