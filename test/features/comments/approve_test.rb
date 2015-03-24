@@ -15,12 +15,20 @@ feature "As a user, I want to be able to moderate comments on my memories" do
 
   scenario "a memory owner's comments on their own memories don't need to be approved" do
     # given a user and their own memory
-    @user = users :user_1
+    user = users :user_1
     sign_in user
-    @memory = memories :user1_memory
-    @comment = comments :new_comment
+    memory = memories :user1_memory
+    comment = comments :new_comment
 
-    # TODO: write the rest of this
+    # when they comment on their own memory
+    visit memory_path(memory)
+    submit_comment_form(comment)
+
+    # then it should be visible to everyone right away
+    page.text.wont_include "Pending approval"
+    switch_signed_in_user users(:user_2)
+    visit memory_path(memory)
+    page_must_include_comment(comment)
   end
 
   scenario "unapproved comments are only visible to the memory creator and the comment's author" do
