@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
+
   rescue_from Pundit::NotAuthorizedError do
     redirect_to memories_path, notice: "Page Not Found"
   end

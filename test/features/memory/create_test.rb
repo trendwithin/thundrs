@@ -64,12 +64,10 @@ feature "As a user, I would like to create memories with photos, keywords, and d
   scenario "new memories are added to the user's memory index" do
     # when the new memory form is submitted
     visit new_memory_path
-    save_and_open_page
     submit_memory_form(@memory)
 
     # then the memory should be on the memory index page
     visit memories_path
-    save_and_open_page
     page_must_include_memory(@memory)
   end
 end
