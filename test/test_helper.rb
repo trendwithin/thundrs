@@ -47,6 +47,21 @@ class ActiveSupport::TestCase
       page.find("#memory .memory-image[src=#{memory_data.image_src}]")
     end
   end
+
+  def submit_comment_form(comment_data)
+    fill_in "#comment_body", with: @comment.body
+    page.find("#save_comment_button").click
+  end
+
+  def page_must_include_comment(comment_data)
+    page.text.must_include comment_data.body
+    page.text.must_include comment_data.author.username
+  end
+
+  def page_wont_include_comment(comment_data)
+    page.text.must_include comment_data.body
+    page.text.must_include comment_data.author.username
+  end
 end
 
 class ActionDispatch::IntegrationTest
