@@ -18,7 +18,7 @@ class MemoriesController < ApplicationController
   end
 
   def create
-    @memory = Memory.new(memory_params)
+    @memory = current_user.memories.build(memory_params)
 
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
