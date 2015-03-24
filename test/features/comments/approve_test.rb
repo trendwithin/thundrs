@@ -57,4 +57,30 @@ feature "As a user, I want to be able to moderate comments on my memories" do
     visit memory_path(comment.memory)
     page_must_include_comment(comment)
   end
+
+  scenario "comments can be declined from the dashboard" do
+    # given a specific user and an unapproved comment
+    user = users :user_1
+    comment = comments :unapproved_comment
+
+    # when the user clicks the decline button on the dashboard
+    visit memories_path
+    page.find(".comment-decline-button").click
+
+    # then the comment will disappear forever
+    page_wont_include_comment(comment)
+  end
+
+  scenario "comments can be declined from a memory's detail page" do
+    # given a specific user and an unapproved comment
+    user = users :user_1
+    comment = comments :unapproved_comment
+
+    # when the user clicks the decline button on the memory's detail page
+    visit memory_path(comment.memory)
+    page.find(".comment-decline-button").click
+
+    # then the comment will disappear forever
+    page_wont_include_comment(comment)
+  end
 end
