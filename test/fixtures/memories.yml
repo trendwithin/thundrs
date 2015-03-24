@@ -1,0 +1,11 @@
+user1_memory:
+  name: That one time I did that one thing
+  keywords: time thing
+  description: It's pretty self-explanatory
+  creator: user_1
+
+user2_memory:
+  name: I don't remember
+  keywords: bad memory
+  description: Seriously. Anyone?
+  creator: user_2
