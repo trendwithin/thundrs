@@ -7,3 +7,7 @@ user_2:
   name: Citation
   email: trifecta@example.com
   password: password2
+
+user_3:
+  username: Randy Newman
+  email: randy@shortpeoplesuck.com

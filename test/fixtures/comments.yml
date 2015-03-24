@@ -1,0 +1,8 @@
+new_comment:
+  body: This shit is whack
+
+unapproved_comment:
+  body: Please approve my comment
+  author: user_2
+  approved: false
+  memory: user1_memory
