@@ -8,6 +8,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    return @record.permitted_attributes
+    @record.permitted_attributes
   end
 end
