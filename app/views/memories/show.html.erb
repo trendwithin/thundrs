@@ -20,6 +20,8 @@
   <%= @memory.creator %>
 </p>
 
+<%= render @memory.comments %>
+
 <%= render 'comments/form' %>
 
 <%= link_to 'Edit', edit_memory_path(@memory) %> |

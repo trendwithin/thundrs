@@ -8,10 +8,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if update?
-      [:approved]
-    else
-      [:body, :author_id, :memory_id]
-    end
+    return @record.permitted_attributes
   end
 end

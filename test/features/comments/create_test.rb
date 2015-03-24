@@ -20,10 +20,10 @@ feature "As a user, I would like to comment on other user's memories" do
 
   scenario "comments can be created" do
     # when a user submits the comment create form
+    visit memory_path(@memory)
     submit_comment_form(@comment)
 
     # then the user will see their unapproved comment show up
-    page_must_include_comment(@comment)
-    page.text.must_include "Pending approval"
+    page.text.must_include "Comment was successfully created"
   end
 end
