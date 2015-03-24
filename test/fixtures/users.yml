@@ -10,3 +10,8 @@ user_2:
 user_3:
   username: Randy Newman
   email: randy@shortpeoplesuck.com
+
+adminuser:
+  username: Super Admin
+  email: admin@thundrs.com
+  role: 1
