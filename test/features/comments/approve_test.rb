@@ -13,6 +13,16 @@ feature "As a user, I want to be able to moderate comments on my memories" do
     page_must_include_comment comment
   end
 
+  scenario "a memory owner's comments on their own memories don't need to be approved" do
+    # given a user and their own memory
+    @user = users :user_1
+    sign_in user
+    @memory = memories :user1_memory
+    @comment = comments :new_comment
+
+    # TODO: write the rest of this
+  end
+
   scenario "unapproved comments are only visible to the memory creator and the comment's author" do
     # given a user and an unapproved comment they shouldn't be able to see
     user = users :user_3
