@@ -34,6 +34,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "unapproved comments are only visible to the memory creator and the comment's author" do
     # given a user and an unapproved comment they shouldn't be able to see
     user = users :user_3
+    sign_in user
     comment = comments :unapproved_comment
 
     # when the user views the memory the comment is on
@@ -46,6 +47,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "comments can be approved from the dashboard" do
     # given a specific user and an unapproved comment
     user = users :user_1
+    sign_in user
     comment = comments :unapproved_comment
 
     # when the user clicks the approve button on the dashboard
@@ -64,6 +66,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "comments can be approved from a memory's detail page" do
     # given a specific user and an unapproved comment
     user = users :user_1
+    sign_in user
     comment = comments :unapproved_comment
 
     # when the user clicks the approve button on the memory's detail page
@@ -79,6 +82,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "comments can be declined from the dashboard" do
     # given a specific user and an unapproved comment
     user = users :user_1
+    sign_in user
     comment = comments :unapproved_comment
 
     # when the user clicks the decline button on the dashboard
@@ -92,6 +96,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "comments can be declined from a memory's detail page" do
     # given a specific user and an unapproved comment
     user = users :user_1
+    sign_in user
     comment = comments :unapproved_comment
 
     # when the user clicks the decline button on the memory's detail page

@@ -59,7 +59,7 @@ class ActiveSupport::TestCase
   end
 
   def submit_comment_form(comment_data)
-    fill_in "#comment_body", with: @comment.body
+    fill_in "#comment_body", with: comment_data.body
     page.find("#save_comment_button").click
   end
 
