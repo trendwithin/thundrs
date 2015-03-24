@@ -6,3 +6,9 @@ unapproved_comment:
   author: user_2
   approved: false
   memory: user1_memory
+
+approved_comment:
+  body: Thanks for approving me!
+  author: user_2
+  approved: true
+  memory: user1_memory
