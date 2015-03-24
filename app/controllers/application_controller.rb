@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  rescue_from Pundit::NotAuthorizedError do
+    redirect_to memories_path, notice: "Page Not Found"
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
   end

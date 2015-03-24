@@ -19,6 +19,7 @@
   <strong>Creator:</strong>
   <%= @memory.creator %>
 </p>
-
-<%= link_to 'Edit', edit_memory_path(@memory) %> |
+<% if policy(@memory).edit? %>
+  <%= link_to 'Edit', edit_memory_path(@memory) %> |
+<% end %>
 <%= link_to 'Back', memories_path %>
