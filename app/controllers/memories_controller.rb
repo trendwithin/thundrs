@@ -1,6 +1,6 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
+  after_action :verify_authorized, only: [:update]
   # GET /memories
   # GET /memories.json
   def index

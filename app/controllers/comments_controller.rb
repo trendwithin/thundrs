@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
+  after_action :verify_authorized, only: [:update, :destroy]
 
   # POST /comments
   # POST /comments.json
