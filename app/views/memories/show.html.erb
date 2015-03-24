@@ -19,6 +19,11 @@
   <strong>Creator:</strong>
   <%= @memory.creator %>
 </p>
+
+<%= render @memory.comments %>
+
+<%= render 'comments/form' %>
+
 <% if policy(@memory).edit? %>
   <%= link_to 'Edit', edit_memory_path(@memory) %> |
 <% end %>

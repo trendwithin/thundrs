@@ -4,7 +4,7 @@ feature "As a user, I would like to comment on other user's memories" do
   before do
     # given a logged in user and a memory
     @user = users :user_1
-    sign_in user
+    sign_in @user
     @memory = memories :user2_memory
     @comment = comments :new_comment
   end
@@ -14,16 +14,16 @@ feature "As a user, I would like to comment on other user's memories" do
     visit memory_path(@memory)
 
     # then a form and button for leaving a comment are visible
-    page.find("#comment_body").wont_be_empty
-    page.find("#save_comment_button").wont_be_empty
+    page.find("#comment_body")
+    page.find("#comment_save")
   end
 
   scenario "comments can be created" do
     # when a user submits the comment create form
+    visit memory_path(@memory)
     submit_comment_form(@comment)
 
     # then the user will see their unapproved comment show up
-    page_must_include_comment(@comment)
-    page.text.must_include "Pending approval"
+    page.text.must_include "Comment was successfully created"
   end
 end

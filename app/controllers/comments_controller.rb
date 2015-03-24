@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_memory, only: [:create, :update, :destroy]
   after_action :verify_authorized, only: [:update, :destroy]
 
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @memory.comments.build(comment_params)
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      redirect_to @memory, notice: 'Comment was successfully created.'
     else
       render :new
     end
@@ -25,7 +26,6 @@ class CommentsController < ApplicationController
     end
   end
 
-
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
@@ -39,6 +39,10 @@ class CommentsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_memory
+    @memory = Memory.find(params[:memory_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
