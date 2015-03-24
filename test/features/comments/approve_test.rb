@@ -4,6 +4,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
   scenario "unapproved comments show up on the dashboard" do
     # given a specific user and an unapproved comment
     user = users :user_1
+    sign_in(user)
     comment = comments :unapproved_comment
 
     # when the user looks at their dashboard page
