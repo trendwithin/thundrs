@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    authorize @comment
     if @comment.update(comment_params)
       redirect_to @comment, notice: 'Comment was successfully updated.'
     else
@@ -28,6 +29,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    authorize @comment
     @comment.destroy
     redirect_to comments_url, notice: 'Comment was successfully destroyed.'
   end
@@ -41,6 +43,6 @@ class CommentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(:body, :author_id, :memory_id, :approved)
+    params.require(:comment).permit(*policy(@comment || Comment).permitted_attributes)
   end
 end
