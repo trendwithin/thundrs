@@ -2,8 +2,8 @@ require "test_helper"
 
 feature "As a user, I want to edit the details of my memories" do
   before do
-    @user = users :user1
-    sign_in user
+    @user = users :user_1
+    sign_in @user
   end
 
   scenario "users can see an edit link on their own memories" do
@@ -14,7 +14,7 @@ feature "As a user, I want to edit the details of my memories" do
     visit memory_path(memory)
 
     # then an edit button is visible, and it leads to an edit form
-    page.find("#edit-button").click
+    click_on "Edit"
     current_path.must_equal edit_memory_path(memory)
   end
 
@@ -27,7 +27,7 @@ feature "As a user, I want to edit the details of my memories" do
 
     # there will not be an edit button
     assert_raise Capybara::ElementNotFound do
-      page.find "#edit-button"
+      click_on "Edit"
     end
   end
 
@@ -37,10 +37,9 @@ feature "As a user, I want to edit the details of my memories" do
 
     # when a user goes to the edit path
     visit edit_memory_path(memory)
-
     # the user will be redirected
     current_path.wont_equal edit_memory_path(memory)
-    page.text.must_include "you cannot edit"
+    page.text.must_include "Page Not Found"
   end
 
   scenario "memory details can be changed" do

@@ -37,7 +37,8 @@ class ActiveSupport::TestCase
     fill_in "Keywords", with: memory_data.keywords
     fill_in "Description", with: memory_data.description
     # TODO: test image upload?
-    click_button 'Create Memory'
+    #click_button 'Create Memory'
+    page.find("input[type=submit]").click
   end
 
   def page_must_include_memory(memory_data)
