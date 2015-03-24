@@ -20,7 +20,6 @@ class MemoriesController < ApplicationController
   def create
     @memory = Memory.new(memory_params)
 
-    authorize @memory
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
     else
