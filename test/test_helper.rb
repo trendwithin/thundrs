@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
 
   def sign_out
     visit root_path
-    page.find("#signout-button").click
+    click_link 'Logout'
   end
 
   def switch_signed_in_user(user = nil)

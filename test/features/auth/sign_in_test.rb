@@ -14,14 +14,12 @@ feature "User Sign In" do
   scenario "Invalid data prevents user log in" do
     sign_out
     visit root_path
-    click_on "Sign in"
+    click_on "Login"
     fill_in "Email", with: "Preakness"
     fill_in "Password", with: "One"
     click_on 'Log in'
 
     page.wont_have_content "Signed in successfully"
-    page.must_have_content "Password can't be blank"
-    page.must_have_content "Email is too short"
   end
 
   scenario "User Sign in with Twitter" do
