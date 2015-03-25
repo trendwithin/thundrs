@@ -6,7 +6,11 @@ class MemoriesController < ApplicationController
   # GET /memories.json
   def index
     @memories = policy_scope(Memory)
-    @replies = current_user.replies.where(approved: false)
+    @replies = {}
+    current_user.replies.where(approved: false).each do |reply|
+      @replies[reply.memory] = [] unless @replies.keys.include? reply.memory
+      @replies[reply.memory] << reply
+    end
   end
 
   # GET /memories/1
