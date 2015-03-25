@@ -24,14 +24,13 @@ feature "As a user, I want to be able to moderate comments on my memories" do
     visit memory_path(memory)
     submit_comment_form(comment)
     # then it should be visible to everyone right away
-    # page.text.wont_include "Pending approval"
-    # switch_signed_in_user users(:user_2)
-    # visit memory_path(memory)
-    save_and_open_page
-    # page_must_include_comment(comment)
+    page.text.wont_include "Pending approval"
+    switch_signed_in_user users(:user_2)
+    visit memory_path(memory)
+    page_must_include_comment(comment)
   end
-=begin
-  scenario "unapproved comments are only visible to the memory creator and the comment's author" do
+
+  scenario "unapproved comments are only visible to the memory creator" do
     # given a user and an unapproved comment they shouldn't be able to see
     user = users :user_3
     sign_in user
@@ -39,7 +38,6 @@ feature "As a user, I want to be able to moderate comments on my memories" do
 
     # when the user views the memory the comment is on
     visit memory_path(comment.memory)
-
     # then the comment will not be visible
     page_wont_include_comment(comment)
   end
@@ -52,29 +50,14 @@ feature "As a user, I want to be able to moderate comments on my memories" do
 
     # when the user clicks the approve button on the dashboard
     visit memories_path
-    page.find(".comment-approve-button").click
+    click_button 'Accept'
 
     # then the comment will no longer be shown on the dashboard
+    visit memories_path
     page_wont_include_comment(comment)
 
     # and then the comment will be shown to other users
-    switch_signed_in_user users(:user2)
-    visit memory_path(comment.memory)
-    page_must_include_comment(comment)
-  end
-
-  scenario "comments can be approved from a memory's detail page" do
-    # given a specific user and an unapproved comment
-    user = users :user_1
-    sign_in user
-    comment = comments :unapproved_comment
-
-    # when the user clicks the approve button on the memory's detail page
-    visit memory_path(comment.memory)
-    page.find(".comment-approve-button").click
-
-    # then the comment will be shown to others
-    switch_signed_in_user users(:user2)
+    switch_signed_in_user users(:user_2)
     visit memory_path(comment.memory)
     page_must_include_comment(comment)
   end
@@ -87,24 +70,10 @@ feature "As a user, I want to be able to moderate comments on my memories" do
 
     # when the user clicks the decline button on the dashboard
     visit memories_path
-    page.find(".comment-decline-button").click
+    click_button 'Delete'
 
     # then the comment will disappear forever
+    visit memories_path
     page_wont_include_comment(comment)
   end
-
-  scenario "comments can be declined from a memory's detail page" do
-    # given a specific user and an unapproved comment
-    user = users :user_1
-    sign_in user
-    comment = comments :unapproved_comment
-
-    # when the user clicks the decline button on the memory's detail page
-    visit memory_path(comment.memory)
-    page.find(".comment-decline-button").click
-
-    # then the comment will disappear forever
-    page_wont_include_comment(comment)
-  end
-=end
 end
