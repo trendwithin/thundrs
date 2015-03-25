@@ -25,7 +25,6 @@ feature "As an administrator, I want to delete content from the site, so that I 
     # when an admin sees the memory detail page
     sign_in users(:adminuser)
     visit memory_path(memory)
-    save_and_open_page
     # then she should be able to delete a comment
     click_on 'Delete Comment'
 
