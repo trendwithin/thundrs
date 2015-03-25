@@ -15,6 +15,7 @@
 
 <% if user_signed_in? %>
   <li>
+    Logged in as <%= current_user.username %>.
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
   </li>
   <% else %>
@@ -22,6 +23,8 @@
     <%= link_to('Sign up', new_user_registration_path) %>
     or
     <%= link_to('Login', new_user_session_path) %>
+    or
+    <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
   </li>
   <% end %>
 <%= yield %>
