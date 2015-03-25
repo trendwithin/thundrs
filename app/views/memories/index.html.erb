@@ -1,9 +1,16 @@
-<h1>Listing Memories</h1>
-<div class="large-12 columns">
-  <div class="row">
+<div class="large-12 columns panel">
 
+  <div class="row">
+    <div class="medium-6 small-12 columns">
+        <h2>Your Recent Memories</h2>
+    </div>
+     <div class="medium-6 small-12 columns">
+       <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
+     </div>
+  </div>
+  <div class="row">
     <% @memories.each do |memory| %>
-    <div class="large-4 small-6 columns memory" id="memory-<%= memory.id %>">
+    <div class="large-4 medium-6 small-12 columns memory" id="memory-<%= memory.id %>">
       <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
 
 
@@ -16,24 +23,26 @@
   </div>
 </div>
 
-<div class="large-12 columns">
+<div class="small-12 columns panel">
   <div class="row">
-    <% @replies.each do |replies, memory| %>
-      <div class="large-4 columns">
+    <h2>Replies to your memory</h2>
+  </div>
+  <div class="row">
+    <% @replies.each do |memory, replies| %>
+      <div class="medium-2 columns">
         <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
       </div>
 
-      <div class="large-8 columns">
-
+      <div class="medium-10 columns">
 
           <% replies.each do |reply| %>
-            <div class="comment">
+            <div class="comment panel callout radius">
               <div class="row">
                 <div class="small-6 columns">
-                  <%= reply.author.username %>
+                <b><%= reply.author.username %></b> says:
                 </div>
                 <div class="small-6 columns">
-                  <%= reply.created_at.strftime("%d/%m/%Y") %>
+                  <%= reply.created_at.strftime("%m/%-d/%Y") %>
                 </div>
               </div>
 
@@ -46,14 +55,14 @@
               <div class="row">
                 <div class="small-6 columns">
                   <%= form_for([reply.memory, reply]) do |f| %>
-                    <%= f.submit 'Accept' %>
+                    <%= f.submit 'Accept', class: "button success" %>
                     <%= f.hidden_field :approved, value: true %>
                   <% end %>
                 </div>
                 <div class="small-6 columns">
                   <%= form_for([reply.memory, reply]) do |f| %>
                     <%= f.hidden_field :approved, value: true %>
-                    <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert" %>
                   <% end %>
                 </div>
               </div>
@@ -64,5 +73,3 @@
     <% end %>
   </div>
 </div>
-
-<%= link_to 'New Memory', new_memory_path %>
