@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Thundrs</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
 <% flash.each do |key, value| %>
   <div class"alert-box round <%= flash_case(key) %>">
     <%= value %>
@@ -27,7 +32,7 @@
     <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
   </li>
   <% end %>
-<%= yield %>
-
-</body>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
