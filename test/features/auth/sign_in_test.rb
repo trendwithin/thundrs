@@ -21,12 +21,4 @@ feature "User Sign In" do
 
     page.wont_have_content "Signed in successfully"
   end
-
-  scenario "User Sign in with Twitter" do
-    skip
-    visit root_path
-    click_on "Sign in with Twitter"
-
-    page.must_have_content "Signed in successfully"
-  end
 end

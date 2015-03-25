@@ -22,9 +22,15 @@
 
 <% @replies.each do |reply| %>
   <%= reply.body %> <br />
+    <% if current_user.role == 'admin' %>
+      <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
 <% end %>
 <%= render 'comments/form' %>
 
+<% if current_user.role == 'admin' %>
+    <%= link_to 'Delete Memory', @memory, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% if policy(@memory).edit? %>
   <%= link_to 'Edit', edit_memory_path(@memory) %> |
 <% end %>
