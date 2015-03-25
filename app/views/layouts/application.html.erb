@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Thundrs" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -22,20 +22,6 @@
         </div>
       <% end %>
 
-      <% if user_signed_in? %>
-        <li>
-          Logged in as <%= current_user.username %>.
-          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to('Sign up', new_user_registration_path) %>
-          or
-          <%= link_to('Login', new_user_session_path) %>
-          or
-          <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
-        </li>
-      <% end %>
       <div class="row">
         <%= yield %>
       </div>
