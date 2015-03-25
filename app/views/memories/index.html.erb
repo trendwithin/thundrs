@@ -1,59 +1,75 @@
-<h1>Listing Memories</h1>
+<div class="large-12 columns panel">
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Keywords</th>
-      <th>Description</th>
-      <th>Creator</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="row">
+    <div class="medium-6 small-12 columns">
+        <h2>Your Recent Memories</h2>
+    </div>
+     <div class="medium-6 small-12 columns">
+       <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
+     </div>
+  </div>
+  <div class="row">
     <% @memories.each do |memory| %>
-      <tr class="memory" id="memory-<%= memory.id %>">
-        <td><%= image_tag memory.image.url, class: "memory-image" %></td>
-        <td><%= memory.name %></td>
-        <td><%= memory.keywords %></td>
-        <td><%= memory.description %></td>
-        <td><%= memory.creator %></td>
-        <td><%= link_to 'Show', memory %></td>
-        <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
-        <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="large-4 medium-6 small-12 columns memory" id="memory-<%= memory.id %>">
+      <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
+
+
+      <div class="panel">
+        <h5><%= memory.name %></h5>
+        <h6 class="subheader"><%= memory.keywords %></h6>
+      </div>
+    </div>
     <% end %>
+  </div>
+</div>
 
-    <% @replies.each do |reply| %>
-      <tr>
-        <td><%= reply.body %></td>
-        <td><%= reply.author %></td>
-      <td>
+<div class="small-12 columns panel">
+  <div class="row">
+    <h2>Replies to your memory</h2>
+  </div>
+  <div class="row">
+    <% @replies.each do |memory, replies| %>
+      <div class="medium-2 columns">
+        <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
+      </div>
 
-      <%= form_for([reply.memory, reply]) do |f| %>
-        <div class="actions">
-          <%= f.submit 'Accept' %>
-          <%= f.hidden_field :approved, value: true %>
-        </div>
-      <% end %>
-      </td>
+      <div class="medium-10 columns">
 
-      <td>
-      <%= form_for([reply.memory, reply]) do |f| %>
-        <div class="actions">
-          <%= f.hidden_field :approved, value: true %>
-          <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
-      <% end %>
-      </td>
+          <% replies.each do |reply| %>
+            <div class="comment panel callout radius">
+              <div class="row">
+                <div class="small-6 columns">
+                <b><%= reply.author.username %></b> says:
+                </div>
+                <div class="small-6 columns">
+                  <%= reply.created_at.strftime("%m/%-d/%Y") %>
+                </div>
+              </div>
 
-     </tr>
+              <div class="row">
+                <div class="small-12 columns">
+                  <%= reply.body %>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="small-6 columns">
+                  <%= form_for([reply.memory, reply]) do |f| %>
+                    <%= f.submit 'Accept', class: "button success" %>
+                    <%= f.hidden_field :approved, value: true %>
+                  <% end %>
+                </div>
+                <div class="small-6 columns">
+                  <%= form_for([reply.memory, reply]) do |f| %>
+                    <%= f.hidden_field :approved, value: true %>
+                    <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br />
-
-<%= link_to 'New Memory', new_memory_path %>
+  </div>
+</div>
