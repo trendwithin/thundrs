@@ -36,7 +36,9 @@
           <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
         </li>
       <% end %>
-      <%= yield %>
+      <div class="row">
+        <%= yield %>
+      </div>
       <%= render "layouts/footer" %>
       <%= javascript_include_tag "application" %>
     </div>
