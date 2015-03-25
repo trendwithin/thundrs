@@ -69,7 +69,7 @@ class ActiveSupport::TestCase
   end
 
   def page_wont_include_comment(comment_data)
-    page.text.must_include comment_data.body
+    page.text.wont_include comment_data.body
     # page.text.must_include comment_data.author.username
   end
 end

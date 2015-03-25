@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   def update
     authorize @comment
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully approved.'
+      redirect_to @memory, notice: 'Comment was successfully approved.'
     else
       render :edit
     end
@@ -49,6 +49,7 @@ class CommentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(*policy(@comment || Comment).permitted_attributes)
+    params.require(:comment).permit(:body, :creator_id, :memory_id, :approved)
+    # params.require(:comment).permit(*policy(@comment || Comment).permitted_attributes)
   end
 end

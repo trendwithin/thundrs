@@ -13,7 +13,7 @@ class MemoriesController < ApplicationController
   def show
     # new comment for form helper
     @comment = Comment.new
-    @reply = @memory.comments.where(approved: true)
+    @replies = @memory.comments.where(approved: true)
   end
 
   def edit
