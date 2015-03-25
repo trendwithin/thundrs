@@ -4,7 +4,7 @@ class CreateMemories < ActiveRecord::Migration
       t.string :name
       t.string :keywords
       t.text :description
-      t.references :creator, index: true, foreign_key: true
+      t.references :creator, index: true
 
       t.timestamps null: false
     end
