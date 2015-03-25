@@ -1,8 +1,6 @@
 class AddAttachmentImageToMemories < ActiveRecord::Migration
   def self.up
-    change_table :memories do |t|
-      t.attachment :image
-    end
+    add_attachment :memories, :image
   end
 
   def self.down
