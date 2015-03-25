@@ -58,6 +58,7 @@ feature "As a user, I want to be able to moderate comments on my memories" do
 
     # and then the comment will be shown to other users
     switch_signed_in_user users(:user_2)
+    save_and_open_page
     visit memory_path(comment.memory)
     page_must_include_comment(comment)
   end
