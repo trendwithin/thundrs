@@ -25,6 +25,15 @@
         <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
+    <tr>
+      <% @replies.each do |reply| %>
+        <tr>
+          <td><%= reply.body %></td>
+          <td><%= reply.author %></td>
+        </tr>
+      <% end %>
+    </tr>
   </tbody>
 </table>
 

@@ -7,6 +7,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @memory.comments.build(comment_params)
+    @comment.author = current_user
+    @comment.approved = true if @memory.creator == current_user
 
     if @comment.save
       redirect_to @memory, notice: 'Comment was successfully created.'
