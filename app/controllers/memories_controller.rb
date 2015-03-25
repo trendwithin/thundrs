@@ -5,6 +5,7 @@ class MemoriesController < ApplicationController
   # GET /memories.json
   def index
     @memories = policy_scope(Memory)
+    @replies = current_user.replies.where(approved: false)
   end
 
   # GET /memories/1
@@ -12,6 +13,7 @@ class MemoriesController < ApplicationController
   def show
     # new comment for form helper
     @comment = Comment.new
+    @replies = @memory.comments.where(approved: true)
   end
 
   def edit

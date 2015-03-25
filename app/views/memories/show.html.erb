@@ -20,8 +20,9 @@
   <%= @memory.creator %>
 </p>
 
-<%= render @memory.comments %>
-
+<% @replies.each do |reply| %>
+  <%= reply.body %> <br />
+<% end %>
 <%= render 'comments/form' %>
 
 <% if policy(@memory).edit? %>
