@@ -2,9 +2,10 @@
 
 <h1>Listing Memories</h1>
 
-<table>
+<table id="memory">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Keywords</th>
       <th>Description</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @memories.each do |memory| %>
       <tr>
+        <td><%= image_tag memory.image_file_name, class: "memory-image" %></td>
         <td><%= memory.name %></td>
         <td><%= memory.keywords %></td>
         <td><%= memory.description %></td>

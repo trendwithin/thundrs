@@ -1,30 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div id="memory">
 
-<p>
-  <strong>Name:</strong>
-  <%= @memory.name %>
-</p>
+  <%= image_tag @memory.image_file_name, class: "memory-image" %>
 
-<p>
-  <strong>Keywords:</strong>
-  <%= @memory.keywords %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @memory.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @memory.description %>
-</p>
+  <p>
+    <strong>Keywords:</strong>
+    <%= @memory.keywords %>
+  </p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @memory.creator %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @memory.description %>
+  </p>
 
-<%= render @memory.comments %>
+  <p>
+    <strong>Creator:</strong>
+    <%= @memory.creator %>
+  </p>
 
-<%= render 'comments/form' %>
+  <%= render @memory.comments %>
 
-<% if policy(@memory).edit? %>
-  <%= link_to 'Edit', edit_memory_path(@memory) %> |
-<% end %>
-<%= link_to 'Back', memories_path %>
+  <%= render 'comments/form' %>
+
+  <% if policy(@memory).edit? %>
+    <%= link_to 'Edit', edit_memory_path(@memory) %> |
+  <% end %>
+  <%= link_to 'Back', memories_path %>
+
+</div>
