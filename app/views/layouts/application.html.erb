@@ -12,27 +12,34 @@
   </head>
 
   <body>
-<% flash.each do |key, value| %>
-  <div class"alert-box round <%= flash_case(key) %>">
-    <%= value %>
-  </div>
-<% end %>
+  <div class="row">
+    <div class="large-12 columns">
 
-<% if user_signed_in? %>
-  <li>
-    Logged in as <%= current_user.username %>.
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  </li>
-  <% else %>
-  <li>
-    <%= link_to('Sign up', new_user_registration_path) %>
-    or
-    <%= link_to('Login', new_user_session_path) %>
-    or
-    <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
-  </li>
-  <% end %>
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+      <%= render "layouts/header" %>
+      <% flash.each do |key, value| %>
+        <div class"alert-box round <%= flash_case(key) %>">
+          <%= value %>
+        </div>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <li>
+          Logged in as <%= current_user.username %>.
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to('Sign up', new_user_registration_path) %>
+          or
+          <%= link_to('Login', new_user_session_path) %>
+          or
+          <%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %>
+        </li>
+      <% end %>
+      <%= yield %>
+      <%= render "layouts/footer" %>
+      <%= javascript_include_tag "application" %>
+    </div>
+  </div>
   </body>
 </html>
