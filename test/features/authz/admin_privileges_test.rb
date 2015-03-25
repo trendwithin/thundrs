@@ -10,7 +10,6 @@ feature "As an administrator, I want to delete content from the site, so that I 
     visit memory_path(memory)
 
     # then she should be able to delete the memory
-    #page.find("#delete-button").click
     click_link 'Delete Memory'
 
     # and then the memory should no longer exist
@@ -28,7 +27,7 @@ feature "As an administrator, I want to delete content from the site, so that I 
     visit memory_path(memory)
     save_and_open_page
     # then she should be able to delete a comment
-    page.find("#comment-#{comment.id} .delete-button").click
+    click_on 'Delete Comment'
 
     # and then the comment should no longer be there
     page_wont_include_comment comment
