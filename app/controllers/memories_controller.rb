@@ -1,4 +1,5 @@
 class MemoriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, only: [:update, :edit]
   # GET /memories
