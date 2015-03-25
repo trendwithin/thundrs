@@ -36,7 +36,7 @@ class ActiveSupport::TestCase
     fill_in "Name", with: memory_data.name
     fill_in "Keywords", with: memory_data.keywords
     fill_in "Description", with: memory_data.description
-    # TODO: test image upload?
+    attach_file "Image", File.join(Rails.root, '/public/img-300-placeholder.gif')
     page.find("input[type=submit]").click
   end
 
@@ -46,7 +46,7 @@ class ActiveSupport::TestCase
     page.text.must_include memory_data.description
     # TODO: this next test is a little weird. If it's nil, it will actually raise an error, but not sure
     #       how best to check for that
-    # page.find("#memory .memory-image[src=#{memory_data.image_src}]").wont_be_nil
+    page.find("#memory .memory-image[src=#{memory_data.image_src}]").wont_be_nil
   end
 
   def page_wont_include_memory(memory_data)
