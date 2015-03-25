@@ -16,4 +16,5 @@ user_3:
 adminuser:
   username: Super Admin
   email: admin@thundrs.com
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
   role: 1

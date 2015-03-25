@@ -45,6 +45,12 @@ class MemoriesController < ApplicationController
     end
   end
 
+  def destroy
+    authorize @memory
+    @memory.destroy
+    redirect_to memories_path, notice: 'Memory was successfully declined.'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
