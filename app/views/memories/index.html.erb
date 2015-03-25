@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Memories</h1>
 
 <table>
@@ -26,17 +24,34 @@
       </tr>
     <% end %>
 
-    <tr>
-      <% @replies.each do |reply| %>
-        <tr>
-          <td><%= reply.body %></td>
-          <td><%= reply.author %></td>
-        </tr>
+    <% @replies.each do |reply| %>
+      <tr>
+        <td><%= reply.body %></td>
+        <td><%= reply.author %></td>
+      <td>
+
+      <%= form_for([reply.memory, reply]) do |f| %>
+        <div class="actions">
+          <%= f.submit 'Accept' %>
+          <%= f.hidden_field :approved, value: true %>
+        </div>
       <% end %>
-    </tr>
+      </td>
+
+      <td>
+      <%= form_for([reply.memory, reply]) do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :approved, value: true %>
+          <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+      </td>
+
+     </tr>
+    <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Memory', new_memory_path %>

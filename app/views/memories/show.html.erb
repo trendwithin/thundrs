@@ -20,8 +20,8 @@
   <%= @memory.creator %>
 </p>
 
-<% @reply.each do |reply| %>
-  <%= render reply %>
+<% @replies.each do |reply| %>
+  <%= reply.body %> <br />
 <% end %>
 <%= render 'comments/form' %>
 
