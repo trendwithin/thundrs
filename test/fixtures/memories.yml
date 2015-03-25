@@ -3,14 +3,17 @@ user1_memory:
   keywords: time thing
   description: It's pretty self-explanatory
   creator: user_1
+  image_file_name: /img-300-placeholder.gif
 
 user2_memory:
   name: I don't remember
   keywords: bad memory
   description: Seriously. Anyone?
   creator: user_2
+  image_file_name: /img-300-placeholder.gif
 
 new_memory:
   name: I don't recall
   keywords: Peter
   description: Amazing Performace
+  image_file_name: /img-300-placeholder.gif

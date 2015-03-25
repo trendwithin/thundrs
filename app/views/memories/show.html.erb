@@ -1,37 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="memory" id="memory-<%= @memory.id %>">
 
-<p>
-  <strong>Name:</strong>
-  <%= @memory.name %>
-</p>
+  <%= image_tag @memory.image.url, class: "memory-image" %>
 
-<p>
-  <strong>Keywords:</strong>
-  <%= @memory.keywords %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @memory.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @memory.description %>
-</p>
+  <p>
+    <strong>Keywords:</strong>
+    <%= @memory.keywords %>
+  </p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @memory.creator %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @memory.description %>
+  </p>
 
-<% @replies.each do |reply| %>
-  <%= reply.body %> <br />
-    <% if current_user.role == 'admin' %>
-      <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-<% end %>
-<%= render 'comments/form' %>
-
-<% if current_user.role == 'admin' %>
-    <%= link_to 'Delete Memory', @memory, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% @replies.each do |reply| %>
+    <%= reply.body %> <br />
+      <% if current_user.role == 'admin' %>
+        <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
   <% end %>
-<% if policy(@memory).edit? %>
-  <%= link_to 'Edit', edit_memory_path(@memory) %> |
-<% end %>
-<%= link_to 'Back', memories_path %>
+  <%= render 'comments/form' %>
+
+  <% if current_user.role == 'admin' %>
+      <%= link_to 'Delete Memory', @memory, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% if policy(@memory).edit? %>
+    <%= link_to 'Edit', edit_memory_path(@memory) %> |
+  <% end %>
+  <%= link_to 'Back', memories_path %>
+</div>

@@ -60,6 +60,6 @@ class MemoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def memory_params
-    params.require(:memory).permit(:name, :keywords, :description, :creator_id)
+    params.require(:memory).permit(:name, :keywords, :description, :creator_id, :image)
   end
 end
