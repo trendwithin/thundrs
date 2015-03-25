@@ -6,12 +6,15 @@ user_1:
 user_2:
   username: Citation
   email: trifecta@example.com
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
 
 user_3:
   username: Randy Newman
   email: randy@shortpeoplesuck.com
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
 
 adminuser:
   username: Super Admin
   email: admin@thundrs.com
+  encrypted_password: <%= Devise.bcrypt(User, "password") %>
   role: 1

@@ -21,7 +21,7 @@ feature "As a user, I would like to create memories with photos, keywords, and d
     # when the new memory form is submitted
     submit_memory_form(@memory)
     # then the user should be shown the created memory
-    page_must_include_memory(@memory)
+    page_must_include_memory Memory.find(@memory.id + 1)
   end
 
   scenario "memories cannot be created without a name" do
@@ -68,6 +68,6 @@ feature "As a user, I would like to create memories with photos, keywords, and d
 
     # then the memory should be on the memory index page
     visit memories_path
-    page_must_include_memory(@memory)
+    page_must_include_memory Memory.find(@memory.id + 1)
   end
 end

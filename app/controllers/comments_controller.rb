@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: [:update, :destroy]
   before_action :set_memory, only: [:create, :update, :destroy]
   after_action :verify_authorized, only: [:update, :destroy]
@@ -7,6 +8,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @memory.comments.build(comment_params)
+    @comment.author = current_user
+    @comment.approved = true if @memory.creator == current_user
 
     if @comment.save
       redirect_to @memory, notice: 'Comment was successfully created.'
@@ -20,7 +23,7 @@ class CommentsController < ApplicationController
   def update
     authorize @comment
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully approved.'
+      redirect_to @memory, notice: 'Comment was successfully approved.'
     else
       render :edit
     end

@@ -1,10 +1,12 @@
 class MemoriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, only: [:update, :edit]
   # GET /memories
   # GET /memories.json
   def index
     @memories = policy_scope(Memory)
+    @replies = current_user.replies.where(approved: false)
   end
 
   # GET /memories/1
@@ -12,6 +14,7 @@ class MemoriesController < ApplicationController
   def show
     # new comment for form helper
     @comment = Comment.new
+    @replies = @memory.comments.where(approved: true)
   end
 
   def edit
@@ -40,6 +43,12 @@ class MemoriesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    authorize @memory
+    @memory.destroy
+    redirect_to memories_path, notice: 'Memory was successfully declined.'
   end
 
   private

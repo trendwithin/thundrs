@@ -10,10 +10,9 @@ feature "As an administrator, I want to delete content from the site, so that I 
     visit memory_path(memory)
 
     # then she should be able to delete the memory
-    page.find("#delete-button").click
+    click_link 'Delete Memory'
 
     # and then the memory should no longer exist
-    visit memory_path(memory)
     current_path.must_equal memories_path # TODO: not sure if this will redirect properly or just throw a 404?
     page_wont_include_memory memory
   end
@@ -26,9 +25,8 @@ feature "As an administrator, I want to delete content from the site, so that I 
     # when an admin sees the memory detail page
     sign_in users(:adminuser)
     visit memory_path(memory)
-
     # then she should be able to delete a comment
-    page.find("#comment-#{comment.id} .delete-button").click
+    click_on 'Delete Comment'
 
     # and then the comment should no longer be there
     page_wont_include_comment comment

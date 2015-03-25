@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Memories</h1>
 
-<table id="memory">
+<table>
   <thead>
     <tr>
       <th></th>
@@ -16,7 +14,7 @@
 
   <tbody>
     <% @memories.each do |memory| %>
-      <tr>
+      <tr class="memory" id="memory-<%= memory.id %>">
         <td><%= image_tag memory.image.url, class: "memory-image" %></td>
         <td><%= memory.name %></td>
         <td><%= memory.keywords %></td>
@@ -27,9 +25,35 @@
         <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
+    <% @replies.each do |reply| %>
+      <tr>
+        <td><%= reply.body %></td>
+        <td><%= reply.author %></td>
+      <td>
+
+      <%= form_for([reply.memory, reply]) do |f| %>
+        <div class="actions">
+          <%= f.submit 'Accept' %>
+          <%= f.hidden_field :approved, value: true %>
+        </div>
+      <% end %>
+      </td>
+
+      <td>
+      <%= form_for([reply.memory, reply]) do |f| %>
+        <div class="actions">
+          <%= f.hidden_field :approved, value: true %>
+          <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+      </td>
+
+     </tr>
+    <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Memory', new_memory_path %>
