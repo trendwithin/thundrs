@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :memories, foreign_key: "creator_id"
   has_many :comments, foreign_key: "author_id"
 
+  has_attached_file :image
+
   validates :username, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }
 
