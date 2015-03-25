@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.1'
 
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy'
