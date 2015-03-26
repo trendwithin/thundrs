@@ -13,15 +13,20 @@ class Memory < ActiveRecord::Base
   def update_keyword_associations(new_keywords_string, old_keywords_string="")
     new_keywords = new_keywords_string.split(",").map { |e| e.strip }
     old_keywords = old_keywords_string.split(",").map { |e| e.strip }
-    added_keywords = new_keywords - old_keywords
-    removed_keywords = old_keywords - new_keywords
 
-    removed_keywords.each do |keyword|
+    add_keyword_associations(new_keywords - old_keywords)
+    remove_keyword_associations(old_keywords - new_keywords)
+  end
+
+  def remove_keyword_associations(removed_keyword_strings)
+    removed_keyword_strings.each do |keyword|
       assoc = Keyword.find_by(word: keyword)
       keyword_associations.delete(assoc) if assoc
     end
+  end
 
-    added_keywords.each do |keyword|
+  def add_keyword_associations(added_keyword_strings)
+    added_keyword_strings.each do |keyword|
       assoc = Keyword.find_or_create_by(word: keyword)
       keyword_associations << assoc if !keyword_associations.include? assoc
     end
