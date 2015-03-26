@@ -4,21 +4,28 @@
 
       <li class="name">
         <h1>
-          <a href="#">
-            Thundrs
-          </a>
+         <%= link_to "Thundrs", home_path %>
         </h1>
-
+      </li>
     </ul>
     <ul class="left">
-     </li>
-      <li class="divider"</li>
+      <% if user_signed_in? %>
         <li class="has-form">
-          <input type="text" placeholder="Search">
-        <li class="name">
-          <h1><%= link_to "Thundrs", home_path %></h1>
-
+          <div class="row collapse">
+            <div class="large-8 small-9 columns">
+              <input type="text" placeholder="Search">
+            </div>
+            <div class="large-4 small-3 columns">
+              <a href="#" class="info button expand">Search</a>
+            </div>
+          </div>
         </li>
+      <% end %>
+    </ul>
+
+    <ul class="left">
+      <li>
+        <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
       </li>
     </ul>
 

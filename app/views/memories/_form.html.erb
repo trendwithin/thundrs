@@ -10,24 +10,25 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="row">
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, class: "form-label"%><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :keywords %><br>
+    <%= f.label :keywords, class: "form-label" %><br>
     <%= f.text_field :keywords %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description, class: "form-label" %><br>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+    <%= f.label :image, class: "form-label" %><br>
+    <%= f.file_field :image, class: "button" %>
   </div>
+</div>
   <div class="actions">
-    <%= f.submit class: "button" %>
+    <%= f.submit class: "button round" %>
   </div>
 <% end %>
