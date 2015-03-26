@@ -1,5 +1,5 @@
 <div class="memory" id="memory-<%= @memory.id %>">
-
+  <div class="panel callout radius">
   <%= image_tag @memory.image.url, class: "memory-image" %>
 
   <p>
@@ -16,20 +16,26 @@
     <strong>Description:</strong>
     <%= @memory.description %>
   </p>
-
+ </div>
+ <h3> Comments: </h3>
   <% @replies.each do |reply| %>
-    <%= reply.body %> <br />
+    <div class="panel radius">
+      <%= reply.body %> <br />
       <% if current_user.role == 'admin' %>
         <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
+    </div>
   <% end %>
+
   <%= render 'comments/form' %>
 
   <% if current_user.role == 'admin' %>
       <%= link_to 'Delete Memory', @memory, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  <% if policy(@memory).edit? %>
-    <%= link_to 'Edit', edit_memory_path(@memory) %> |
   <% end %>
-  <%= link_to 'Back', memories_path %>
+  <ul class="button-group">
+    <% if policy(@memory).edit? %>
+      <%= link_to 'Edit', edit_memory_path(@memory), class: "button" %> |
+    <% end %>
+    <%= link_to 'Back', memories_path, class: "button" %>
+  </ul>
 </div>

@@ -3,7 +3,7 @@ require "test_helper"
 feature "Visiting The HomePage" do
   scenario "Presented with header Thundrs" do
     visit root_path
-    page.text.must_include "Thundrs!"
+    page.text.must_include "Thundrs"
   end
 
   scenario "Visitor signs up for account" do
