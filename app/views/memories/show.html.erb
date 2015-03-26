@@ -29,7 +29,7 @@
       <%= link_to 'Delete Memory', @memory, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   <% if policy(@memory).edit? %>
-    <%= link_to 'Edit', edit_memory_path(@memory) %> |
+    <%= link_to 'Edit', edit_memory_path(@memory), class: "button" %> |
   <% end %>
-  <%= link_to 'Back', memories_path %>
+  <%= link_to 'Back', memories_path, class: "button" %>
 </div>
