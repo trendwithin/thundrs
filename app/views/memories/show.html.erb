@@ -34,7 +34,7 @@
   <% end %>
   <ul class="button-group">
     <% if policy(@memory).edit? %>
-      <%= link_to 'Edit', edit_memory_path(@memory), class: "button" %> |
+      <%= link_to 'Edit', edit_memory_path(@memory), class: "button round" %> |
     <% end %>
     <%= link_to 'Back', memories_path, class: "button" %>
   </ul>
