@@ -3,9 +3,9 @@ class Memory < ActiveRecord::Base
   has_many :comments
   has_and_belongs_to_many :keyword_associations, class_name: "Keyword"
   has_many :related_memories,
-    ->(m) { where.not(id: m.id) },
-    through: :keyword_associations,
-    source: :memories
+           ->(m) { where.not(id: m.id) },
+           through: :keyword_associations,
+           source: :memories
 
   has_attached_file :image, default_url: "/img-300-placeholder.gif"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -15,7 +15,7 @@ class Memory < ActiveRecord::Base
   validates :description, presence: true
 
   def related_memories_sorted
-    related_memories.group("memories.id").count.sort_by { |k,v| v }.reverse.map { |k,v| Memory.find(k) }
+    related_memories.group("memories.id").count.sort_by { |_, v| v }.reverse.map { |k, _| Memory.find(k) }
   end
 
   def update_keyword_associations(new_keywords_string, old_keywords_string = "")

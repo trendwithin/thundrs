@@ -2,13 +2,13 @@ class MemoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, only: [:update, :edit]
-  # GET /memories
-  # GET /memories.json
+
   def index
     memories = policy_scope(Memory)
     @recent_memories = memories.where.not(creator: current_user).order('created_at DESC').last(6)
     @personal_memories = memories.where(creator: current_user).order('created_at DESC')
 
+    # TODO: refactor this into a relationship using group?
     @replies = {}
     current_user.replies.where(approved: false).each do |reply|
       @replies[reply.memory] = [] unless @replies.keys.include? reply.memory
@@ -16,8 +16,6 @@ class MemoriesController < ApplicationController
     end
   end
 
-  # GET /memories/1
-  # GET /memories/1.json
   def show
     # new comment for form helper
     @comment = Comment.new
@@ -29,7 +27,6 @@ class MemoriesController < ApplicationController
     authorize @memory
   end
 
-  # GET /memories/new
   def new
     @memory = Memory.new
   end
@@ -65,12 +62,10 @@ class MemoriesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_memory
     @memory = Memory.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def memory_params
     params.require(:memory).permit(:name, :keywords, :description, :creator_id, :image)
   end
