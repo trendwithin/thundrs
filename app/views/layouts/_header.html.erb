@@ -25,7 +25,9 @@
 
     <ul class="left">
       <li>
-        <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
+        <% if(user_signed_in?) %>
+          <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
+        <% end %>
       </li>
     </ul>
 
