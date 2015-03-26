@@ -1,4 +1,4 @@
-<header class="">
+<div class="container-to-grid sticky">
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
 
@@ -8,6 +8,14 @@
             Thundrs
           </a>
         </h1>
+
+    </ul>
+    <ul class="left">
+     </li>
+      <li class="divider"</li>
+        <li class="has-form">
+          <input type="text" placeholder="Search">
+        </li>
       </li>
     </ul>
 
@@ -20,10 +28,12 @@
           </li>
         <% else %>
           <li><%= link_to('Sign up', new_user_registration_path) %></li>
+          <li class="divider"></li>
           <li><%= link_to('Login', new_user_session_path) %></li>
+          <li class="divider"></li>
           <li><%= link_to 'Sign up with Twitter', user_omniauth_authorize_path(:twitter) %></li>
         <% end %>
       </ul>
     </section>
   </nav>
-</header>
+</div>
