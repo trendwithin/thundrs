@@ -36,6 +36,10 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.build(memory_params)
 
+    @memory.keyword_associations.split(',').each do |keyword|
+
+    end
+
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
     else
