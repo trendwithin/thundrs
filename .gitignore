@@ -19,3 +19,7 @@
 #Ignore local . files
 .DS_Store
 .env
+
+# Ignore test coverage
+/coverage
+
