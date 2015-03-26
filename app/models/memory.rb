@@ -2,6 +2,9 @@ class Memory < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
   has_many :comments
   has_and_belongs_to_many :keyword_associations, class_name: "Keyword"
+  has_many :related_memories,
+    through: :keyword_associations,
+    source: :memories
 
   has_attached_file :image, default_url: "/img-300-placeholder.gif"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -10,16 +13,16 @@ class Memory < ActiveRecord::Base
   validates :keywords, presence: true
   validates :description, presence: true
 
-  def related_memories
-    related_memories = Hash.new(0)
+  # def related_memories
+  #   related_memories = Hash.new(0)
 
-    keyword_associations.each do |assoc|
-      assoc.memories.each do |mem|
-        related_memories[mem] += 1
-      end
-    end
-    related_memories.delete(self) && related_memories
-  end
+  #   keyword_associations.each do |assoc|
+  #     assoc.memories.each do |mem|
+  #       related_memories[mem] += 1
+  #     end
+  #   end
+  #   related_memories.delete(self) && related_memories
+  # end
 
   def update_keyword_associations(new_keywords_string, old_keywords_string = "")
     new_keywords = new_keywords_string.split(",").map(&:strip)
