@@ -35,10 +35,7 @@ class MemoriesController < ApplicationController
 
   def create
     @memory = current_user.memories.build(memory_params)
-
-    @memory.keyword_associations.split(',').each do |keyword|
-
-    end
+    @memory.update_keyword_associations @memory.keywords
 
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
@@ -49,6 +46,9 @@ class MemoriesController < ApplicationController
 
   def update
     authorize @memory
+
+    @memory.update_keyword_associations memory_params[:keywords], @memory.keywords
+
     if @memory.update(memory_params)
       redirect_to @memory, notice: 'Memory was successfully updated.'
     else
