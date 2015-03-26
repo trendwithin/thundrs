@@ -22,6 +22,7 @@ class MemoriesController < ApplicationController
     # new comment for form helper
     @comment = Comment.new
     @replies = @memory.comments.where(approved: true)
+    @related_memories = @memory.related_memories_sorted.first(5)
   end
 
   def edit

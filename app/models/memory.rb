@@ -3,6 +3,7 @@ class Memory < ActiveRecord::Base
   has_many :comments
   has_and_belongs_to_many :keyword_associations, class_name: "Keyword"
   has_many :related_memories,
+    ->(m) { where.not(id: m.id) },
     through: :keyword_associations,
     source: :memories
 
@@ -13,16 +14,9 @@ class Memory < ActiveRecord::Base
   validates :keywords, presence: true
   validates :description, presence: true
 
-  # def related_memories
-  #   related_memories = Hash.new(0)
-
-  #   keyword_associations.each do |assoc|
-  #     assoc.memories.each do |mem|
-  #       related_memories[mem] += 1
-  #     end
-  #   end
-  #   related_memories.delete(self) && related_memories
-  # end
+  def related_memories_sorted
+    related_memories.group("memories.id").count.sort_by { |k,v| v }.reverse.map { |k,v| Memory.find(k) }
+  end
 
   def update_keyword_associations(new_keywords_string, old_keywords_string = "")
     new_keywords = new_keywords_string.split(",").map(&:strip)
