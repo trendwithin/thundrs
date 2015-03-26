@@ -10,6 +10,17 @@ class Memory < ActiveRecord::Base
   validates :keywords, presence: true
   validates :description, presence: true
 
+  def related_memories
+    related_memories = Hash.new(0)
+
+    keyword_associations.each do |assoc|
+      assoc.memories.each do |mem|
+        related_memories[mem] += 1
+      end
+    end
+    related_memories.delete(self) && related_memories
+  end
+
   def update_keyword_associations(new_keywords_string, old_keywords_string="")
     new_keywords = new_keywords_string.split(",").map(&:strip)
     old_keywords = old_keywords_string.split(",").map(&:strip)
