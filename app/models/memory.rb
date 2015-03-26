@@ -21,7 +21,7 @@ class Memory < ActiveRecord::Base
     related_memories.delete(self) && related_memories
   end
 
-  def update_keyword_associations(new_keywords_string, old_keywords_string="")
+  def update_keyword_associations(new_keywords_string, old_keywords_string = "")
     new_keywords = new_keywords_string.split(",").map(&:strip)
     old_keywords = old_keywords_string.split(",").map(&:strip)
 
