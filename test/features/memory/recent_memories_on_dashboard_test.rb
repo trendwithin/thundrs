@@ -10,6 +10,6 @@ feature "As a user, I want to see memories that others have recently added" do
     visit memories_path
 
     # then they should see those memories
-    page_must_include_memory memory
+    page.find("#memory-#{memory.id}.memory .memory-image").wont_be_nil
   end
 end
