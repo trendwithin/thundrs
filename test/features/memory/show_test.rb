@@ -13,7 +13,7 @@ feature "As a user, I would like to see the details of memories" do
 
     # when the user clicks on it in the index
     visit memories_path
-    page.find("#memory .memory-image[src=#{memory_data.image_src}]").click
+    page.find("#memory-#{@memory.id}.memory .memory-image").click
 
     # then the user will be directed to the memory's detail page
     current_path.must_equal memory_path(@memory)

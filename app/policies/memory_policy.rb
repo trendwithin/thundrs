@@ -13,11 +13,7 @@ class MemoryPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if @user.admin?
-        scope.all
-      else
-        @user.memories
-      end
+      scope.all
     end
   end
 end

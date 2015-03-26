@@ -5,7 +5,10 @@ class MemoriesController < ApplicationController
   # GET /memories
   # GET /memories.json
   def index
-    @memories = policy_scope(Memory)
+    memories = policy_scope(Memory)
+    @recent_memories = memories.where.not(creator: current_user).order('created_at DESC').last(6)
+    @personal_memories = memories.where(creator: current_user).order('created_at DESC')
+
     @replies = {}
     current_user.replies.where(approved: false).each do |reply|
       @replies[reply.memory] = [] unless @replies.keys.include? reply.memory

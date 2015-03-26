@@ -1,5 +1,17 @@
-<div class="large-12 columns panel">
+<div class="small-12 columns">
+  <div class="row small-12">
+    <h2>Recently added</h2>
+  </div>
+  <div class="row">
+    <% @recent_memories.each do |memory| %>
+      <div class="large-2 medium-4 small-6 columns memory" id="memory-<%= memory.id %>">
+        <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
+<div class="small-12 columns panel">
   <div class="row">
     <div class="medium-6 small-12 columns">
         <h2>Your Recent Memories</h2>
@@ -9,7 +21,7 @@
      </div>
   </div>
   <div class="row">
-    <% @memories.each do |memory| %>
+    <% @personal_memories.each do |memory| %>
     <div class="large-4 medium-6 small-12 columns memory" id="memory-<%= memory.id %>">
       <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
 
