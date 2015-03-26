@@ -22,6 +22,7 @@ class MemoriesController < ApplicationController
     # new comment for form helper
     @comment = Comment.new
     @replies = @memory.comments.where(approved: true)
+    @related_memories = @memory.related_memories_sorted.first(5)
   end
 
   def edit
@@ -35,6 +36,7 @@ class MemoriesController < ApplicationController
 
   def create
     @memory = current_user.memories.build(memory_params)
+    @memory.update_keyword_associations @memory.keywords
 
     if @memory.save
       redirect_to @memory, notice: 'Memory was successfully created.'
@@ -45,6 +47,9 @@ class MemoriesController < ApplicationController
 
   def update
     authorize @memory
+
+    @memory.update_keyword_associations memory_params[:keywords], @memory.keywords
+
     if @memory.update(memory_params)
       redirect_to @memory, notice: 'Memory was successfully updated.'
     else
