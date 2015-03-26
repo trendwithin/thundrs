@@ -7,4 +7,8 @@ module ApplicationHelper
     when :alert then "warning"
     end
   end
+
+  def home_path
+    current_user ? memories_path : root_path
+  end
 end
