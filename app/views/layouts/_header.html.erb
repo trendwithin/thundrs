@@ -6,14 +6,16 @@
         <h1>
          <%= link_to "Thundrs", home_path %>
         </h1>
-
+      </li>
     </ul>
     <ul class="left">
-     </li>
-      <li class="divider"</li>
-        <li class="has-form">
-          <input type="text" placeholder="Search">
-      </li>
+      <% if user_signed_in? %>
+        <li class="divider"</li>
+          <li class="has-form">
+            <input type="text" placeholder="Search">
+          </li>
+        </li>
+      <% end %>
     </ul>
 
     <section class="top-bar-section">
