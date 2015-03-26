@@ -11,8 +11,8 @@ class Memory < ActiveRecord::Base
   validates :description, presence: true
 
   def update_keyword_associations(new_keywords_string, old_keywords_string="")
-    new_keywords = new_keywords_string.split(",").map { |e| e.strip }
-    old_keywords = old_keywords_string.split(",").map { |e| e.strip }
+    new_keywords = new_keywords_string.split(",").map(&:strip)
+    old_keywords = old_keywords_string.split(",").map(&:strip)
 
     add_keyword_associations(new_keywords - old_keywords)
     remove_keyword_associations(old_keywords - new_keywords)
@@ -28,7 +28,7 @@ class Memory < ActiveRecord::Base
   def add_keyword_associations(added_keyword_strings)
     added_keyword_strings.each do |keyword|
       assoc = Keyword.find_or_create_by(word: keyword)
-      keyword_associations << assoc if !keyword_associations.include? assoc
+      keyword_associations << assoc unless keyword_associations.include? assoc
     end
   end
 end
