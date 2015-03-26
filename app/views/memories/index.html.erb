@@ -62,7 +62,7 @@
                 <div class="small-6 columns">
                   <%= form_for([reply.memory, reply]) do |f| %>
                     <%= f.hidden_field :approved, value: true %>
-                    <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert" %>
+                    <%= f.submit 'Delete', class: "button alert", method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert" %>
                   <% end %>
                 </div>
               </div>
