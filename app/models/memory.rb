@@ -19,11 +19,15 @@ class Memory < ActiveRecord::Base
   end
 
   def update_keyword_associations(new_keywords_string, old_keywords_string = "")
-    new_keywords = new_keywords_string.split(",").map(&:strip).map(&:downcase)
-    old_keywords = old_keywords_string.split(",").map(&:strip).map(&:downcase)
+    new_keywords = to_keyword_array(new_keywords_string)
+    old_keywords = to_keyword_array(old_keywords_string)
 
     add_keyword_associations(new_keywords - old_keywords)
     remove_keyword_associations(old_keywords - new_keywords)
+  end
+
+  def to_keyword_array(keyword_string)
+    keyword_string.split(",").map(&:strip).map(&:downcase)
   end
 
   def remove_keyword_associations(removed_keyword_strings)
