@@ -457,15 +457,6 @@
       "/Users/tim/CF/04_part1/thundrs/app/helpers/application_helper.rb": [
         1,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
         138,
         null,
         null
@@ -522,6 +513,10 @@
         null,
         null,
         1,
+        12,
+        null,
+        null,
+        1,
         6,
         1,
         1,
@@ -533,12 +528,6 @@
         5,
         5,
         null,
-        null,
-        null
-      ],
-      "/Users/tim/CF/04_part1/thundrs/app/controllers/thundrs_controller.rb": [
-        1,
-        1,
         null,
         null
       ],
@@ -562,19 +551,10 @@
         null,
         null
       ],
-      "/Users/tim/CF/04_part1/thundrs/app/controllers/omniauth_callbacks_controller.rb": [
-        1,
-        1,
-        1,
+      "/Users/tim/CF/04_part1/thundrs/app/controllers/thundrs_controller.rb": [
         1,
         1,
         null,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
         null
       ],
       "/Users/tim/CF/04_part1/thundrs/app/controllers/memories_controller.rb": [
@@ -649,6 +629,11 @@
         1,
         7,
         null,
+        null
+      ],
+      "/Users/tim/CF/04_part1/thundrs/app/models/keyword.rb": [
+        1,
+        1,
         null
       ],
       "/Users/tim/CF/04_part1/thundrs/app/policies/memory_policy.rb": [
@@ -727,11 +712,6 @@
         null,
         null
       ],
-      "/Users/tim/CF/04_part1/thundrs/app/models/keyword.rb": [
-        1,
-        1,
-        null
-      ],
       "/Users/tim/CF/04_part1/thundrs/app/controllers/comments_controller.rb": [
         1,
         1,
@@ -803,8 +783,23 @@
         4,
         null,
         null
+      ],
+      "/Users/tim/CF/04_part1/thundrs/app/controllers/omniauth_callbacks_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null
       ]
     },
-    "timestamp": 1427411305
+    "timestamp": 1427412093
   }
 }
