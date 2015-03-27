@@ -1,16 +1,12 @@
-<div class="row">
-  <div class="small-12 columns panel">
-    <div>
-      <div class="row large small-12">
-        <h2>Recently added</h2>
-      </div>
-      <div class="row">
-        <% @recent_memories.each do |memory| %>
-          <div class="left large-2 medium-4 small-6 columns memory" id="memory-<%= memory.id %>">
-            <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
-          </div>
-        <% end %>
-      </div>
+<div class="row" id="recent_memories">
+  <div class="small-12 columns panel radius">
+    <h2>Recently shared memories<h2>
+    <div class="row">
+      <% @recent_memories.each do |memory| %>
+        <div class="left large-2 medium-4 small-6 columns memory" id="memory-<%= memory.id %>">
+          <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -43,23 +39,12 @@
       <% @current_user.memories.each do |memory| %>
         <div class="left large-4 medium-6 small-12 columns memory" id="memory-<%= memory.id %>">
           <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
-
-<<<<<<< HEAD
-        <div>
-          <h5><%= memory.name %></h5>
-          <h6 class="subheader">
-            <% memory.keywords.split(',').map(&:strip).each do |kw| %>
-              <%= link_to kw, Keyword.find_by(word: kw) %>
-            <% end %>
-          </h6>
-=======
           <div class="panel">
             <h5><%= memory.name %></h5>
             <h6 class="subheader">
               <%= memory.keyword_associations.map{ |kw| link_to kw.word, kw }.join(", ").html_safe %>
             </h6>
           </div>
->>>>>>> master
         </div>
       <% end %>
     </div>
