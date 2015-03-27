@@ -8,6 +8,14 @@
         </h1>
       </li>
     </ul>
+       <ul class="left">
+      <li>
+        <% if(user_signed_in?) %>
+          <%= link_to 'Home', home_path, class: "radius button" %>
+          <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
+        <% end %>
+      </li>
+    </ul>
     <ul class="left">
       <% if user_signed_in? %>
         <li class="has-form">
@@ -21,12 +29,6 @@
           </div>
         </li>
       <% end %>
-    </ul>
-
-    <ul class="left">
-      <li>
-        <%= link_to 'New Memory', new_memory_path, class: "radius button" %>
-      </li>
     </ul>
 
     <section class="top-bar-section">
