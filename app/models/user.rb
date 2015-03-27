@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :rememberable, :trackable, :validatable
 
-  has_many :memories, foreign_key: "creator_id"
+  has_many :memories,
+           -> { order("created_at DESC") },
+           foreign_key: "creator_id"
   has_many :comments, foreign_key: "author_id"
   has_many :pending_replies, through: :memories
   has_many :memories_with_pending_replies,

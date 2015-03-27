@@ -4,9 +4,7 @@ class MemoriesController < ApplicationController
   after_action :verify_authorized, only: [:update, :edit]
 
   def index
-    memories = policy_scope(Memory)
-    @recent_memories = memories.where.not(creator: current_user).order('created_at DESC').last(6)
-    @personal_memories = current_user.memories.order('created_at DESC')
+    @recent_memories = policy_scope(Memory).where.not(creator: current_user).order('created_at DESC').last(6)
   end
 
   def show
