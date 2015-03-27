@@ -68,6 +68,7 @@ feature "As a user, I would like to create memories with photos, keywords, and d
 
     # then the memory should be on the memory index page
     visit memories_path
-    page_must_include_memory Memory.order(:created_at).last
+    memory = Memory.order(:created_at).last
+    page.find("#your_memories #memory-#{memory.id}.memory .memory-image").wont_be_nil
   end
 end

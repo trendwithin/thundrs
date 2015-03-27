@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="recent_memories">
   <div class="small-12 columns">
     <div class="panel radius">
       <div class="row large small-12">
@@ -14,18 +14,19 @@
     </div>
   </div>
 </div>
-  <div class="small-12 columns panel">
+<div class="row" id="related_memories">
+  <div class="small-12 columns">
     <h2>Memories similar to your own<h2>
     <div class="row">
-      <div class="row">
-        <% current_user.related_memories.first(6).each do |memory| %>
-          <div class="left large-2 medium-4 small-6 columns memory" id="memory-<%= memory.id %>">
-            <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
-          </div>
-        <% end %>
-      </div>
+      <% current_user.related_memories.first(6).each do |memory| %>
+        <div class="left large-2 medium-4 small-6 columns memory" id="memory-<%= memory.id %>">
+          <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>
+<div class="row" id="your_memories">
   <div class="small-12 columns panel">
     <div class="row">
       <div class="medium-6 small-12 columns">
@@ -53,6 +54,8 @@
       <% end %>
     </div>
   </div>
+</div>
+<div class="row" id="pending_comments">
   <% unless current_user.pending_replies.empty? %>
     <div class="small-12 columns panel">
       <div class="row">
