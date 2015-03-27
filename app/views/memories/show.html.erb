@@ -1,6 +1,6 @@
 <div class="memory" id="memory-<%= @memory.id %>">
   <div class="panel callout radius">
-  <%= image_tag @memory.image.url, class: "memory-image" %>
+  <%= image_tag @memory.image.url(:large), class: "memory-image" %>
 
   <p>
     <strong>Name:</strong>
@@ -38,7 +38,7 @@
     <% @related_memories.each do |related_memory| %>
       <div class="row">
         <div class="small-12 columns memory">
-          <%= link_to(image_tag(related_memory.image.url), related_memory) %>
+          <%= link_to(image_tag(related_memory.image.url(:medium)), related_memory) %>
         </div>
       </div>
     <% end %>
