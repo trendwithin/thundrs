@@ -6,7 +6,7 @@ class MemoriesController < ApplicationController
   def index
     memories = policy_scope(Memory)
     @recent_memories = memories.where.not(creator: current_user).order('created_at DESC').last(6)
-    @personal_memories = memories.where(creator: current_user).order('created_at DESC')
+    @personal_memories = current_user.memories.order('created_at DESC')
 
     # TODO: refactor this into a relationship using group?
     @replies = {}
