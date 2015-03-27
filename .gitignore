@@ -23,3 +23,6 @@
 # Ignore test coverage
 /coverage
 
+# Ignore thumbnails created in test env
+/public/system
+
