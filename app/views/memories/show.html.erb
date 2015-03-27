@@ -33,15 +33,16 @@
 
   <div class="row">
     <div class="large-8 columns">
-
-    <h3> Comments: </h3>
-    <% @memory.approved_comments.each do |reply| %>
-      <div class="panel radius">
-        <%= reply.body %> <br />
-        <% if current_user.role == 'admin' %>
-          <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if @memory.approved_comments.count > 0 %>
+      <h3> Comments: </h3>
+      <% @memory.approved_comments.each do |reply| %>
+        <div class="panel radius">
+          <%= reply.body %> <br />
+          <% if current_user.role == 'admin' %>
+            <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         <% end %>
-      <% end %>
+    <% end %>
       <%= render 'comments/form' %>
       </div>
       <div class="large-4 columns">
