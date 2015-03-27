@@ -4,6 +4,7 @@ user1_memory:
   description: It's pretty self-explanatory
   creator: user_1
   image_file_name: /img-300-placeholder.gif
+  keyword_associations: k1, k2
 
 user2_memory:
   name: I don't remember
@@ -11,6 +12,7 @@ user2_memory:
   description: Seriously. Anyone?
   creator: user_2
   image_file_name: /img-300-placeholder.gif
+  keyword_associations: k1, k2
 
 new_memory:
   name: I don't recall
