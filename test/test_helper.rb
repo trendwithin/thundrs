@@ -45,7 +45,6 @@ class ActiveSupport::TestCase
 
   def page_must_include_memory(memory_data)
     page.text.must_include memory_data.name
-    # page.text.must_include memory_data.description
     # TODO: this next test is a little weird. If it's nil, it will actually raise an error, but not sure
     #       how best to check for that
     page.find("#memory-#{memory_data.id}.memory .memory-image").wont_be_nil
@@ -66,12 +65,10 @@ class ActiveSupport::TestCase
 
   def page_must_include_comment(comment_data)
     page.text.must_include comment_data.body
-    # page.text.must_include comment_data.author.username
   end
 
   def page_wont_include_comment(comment_data)
     page.text.wont_include comment_data.body
-    # page.text.must_include comment_data.author.username
   end
 end
 
