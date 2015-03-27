@@ -56,36 +56,35 @@
 
           <div class="medium-10 columns">
 
-              <% memory.pending_replies.each do |reply| %>
-                <div class="comment panel callout radius">
-                  <div class="row">
-                    <div class="small-6 columns">
-                    <b><%= reply.author.username %></b> says:
-                    </div>
-                    <div class="small-6 columns">
-                      <%= reply.created_at.strftime("%m/%-d/%Y") %>
-                    </div>
+            <% memory.pending_replies.each do |reply| %>
+              <div class="comment panel callout radius">
+                <div class="row">
+                  <div class="small-6 columns">
+                  <b><%= reply.author.username %></b> says:
                   </div>
-
-                  <div class="row">
-                    <div class="small-12 columns">
-                      <%= reply.body %>
-                    </div>
+                  <div class="small-6 columns">
+                    <%= reply.created_at.strftime("%m/%-d/%Y") %>
                   </div>
+                </div>
 
-                  <div class="row">
-                    <div class="small-6 columns">
-                      <%= form_for([reply.memory, reply]) do |f| %>
-                        <%= f.submit 'Accept', class: "button success round" %>
-                        <%= f.hidden_field :approved, value: true %>
-                      <% end %>
-                    </div>
-                    <div class="small-6 columns">
-                      <%= form_for([reply.memory, reply]) do |f| %>
-                        <%= f.hidden_field :approved, value: true %>
-                        <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert round" %>
-                      <% end %>
-                    </div>
+                <div class="row">
+                  <div class="small-12 columns">
+                    <%= reply.body %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="small-6 columns">
+                    <%= form_for([reply.memory, reply]) do |f| %>
+                      <%= f.submit 'Accept', class: "button success round" %>
+                      <%= f.hidden_field :approved, value: true %>
+                    <% end %>
+                  </div>
+                  <div class="small-6 columns">
+                    <%= form_for([reply.memory, reply]) do |f| %>
+                      <%= f.hidden_field :approved, value: true %>
+                      <%= f.submit 'Delete', method: :delete, data: { confirm: 'Are you sure?' }, class: "button alert round" %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -93,5 +92,6 @@
           </div>
         <% end %>
       </div>
+    </div>
   <% end %>
 </div>
