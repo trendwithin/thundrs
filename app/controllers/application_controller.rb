@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def after_sign_in_path_for(_resource)
+    memories_path
+  end
+
   rescue_from Pundit::NotAuthorizedError do
     redirect_to memories_path, notice: "Page Not Found"
   end
