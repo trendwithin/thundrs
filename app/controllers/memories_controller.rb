@@ -4,22 +4,12 @@ class MemoriesController < ApplicationController
   after_action :verify_authorized, only: [:update, :edit]
 
   def index
-    memories = policy_scope(Memory)
-    @recent_memories = memories.where.not(creator: current_user).order('created_at DESC').last(6)
-    @personal_memories = memories.where(creator: current_user).order('created_at DESC')
-
-    # TODO: refactor this into a relationship using group?
-    @replies = {}
-    current_user.replies.where(approved: false).each do |reply|
-      @replies[reply.memory] = [] unless @replies.keys.include? reply.memory
-      @replies[reply.memory] << reply
-    end
+    @recent_memories = policy_scope(Memory).where.not(creator: current_user).order('created_at DESC').last(6)
   end
 
   def show
     # new comment for form helper
     @comment = Comment.new
-    @replies = @memory.comments.where(approved: true)
     @related_memories = @memory.related_memories_sorted.first(5)
   end
 
