@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
            -> { order("created_at DESC") },
            foreign_key: "creator_id"
   has_many :related_memories,
-           -> { uniq },
+           ->(u) { uniq.where.not(creator: u) },
            through: :memories
 
   has_many :comments, foreign_key: "author_id"
