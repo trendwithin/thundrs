@@ -7,10 +7,8 @@ class Memory < ActiveRecord::Base
            through: :keyword_associations,
            source: :memories
 
-  has_attached_file :image, styles: {
-      large: "600x600>", medium: "450x450>"
-    },
-    default_url: "/img-300-placeholder.gif"
+  has_attached_file :image, styles: { large: "600x600>", medium: "450x450>" },
+                            default_url: "/img-300-placeholder.gif"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates :name, presence: true
