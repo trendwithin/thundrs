@@ -1,12 +1,10 @@
 <div class="memory" id="memory-<%= @memory.id %>">
   <div class="panel callout radius">
-    <%= image_tag @memory.image.url, class: "memory-image" %>
-
     <p>
       <strong>Name:</strong>
-      <%= @memory.name %>
+      <em><%= @memory.name %></em>
     </p>
-
+    <%= image_tag @memory.image.url, class: "memory-image" %>
     <p>
       <strong>Keywords:</strong>
       <%= @memory.keywords %>
