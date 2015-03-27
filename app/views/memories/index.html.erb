@@ -43,20 +43,20 @@
       <% end %>
     </div>
   </div>
-  <% if @replies.count > 0 %>
+  <% unless current_user.pending_replies.empty? %>
     <div class="small-12 columns panel">
       <div class="row">
         <h2>Replies to your memory</h2>
       </div>
       <div class="row">
-        <% @replies.each do |memory, replies| %>
+        <% current_user.memories_with_pending_replies.each do |memory| %>
           <div class="medium-2 columns">
             <%= link_to image_tag(memory.image.url, class: "memory-image"), memory %>
           </div>
 
           <div class="medium-10 columns">
 
-              <% replies.each do |reply| %>
+              <% memory.pending_replies.each do |reply| %>
                 <div class="comment panel callout radius">
                   <div class="row">
                     <div class="small-6 columns">
