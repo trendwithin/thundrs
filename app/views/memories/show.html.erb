@@ -8,7 +8,9 @@
     <%= image_tag @memory.image.url(:large), class: "memory-image" %>
     <p>
       <strong>Keywords:</strong>
-      <%= @memory.keywords %>
+      <% @memory.keywords.split(',').map(&:strip).each do |kw| %>
+        <%= link_to kw, Keyword.find_by(word: kw) %>
+      <% end %>
     </p>
 
     <p>
