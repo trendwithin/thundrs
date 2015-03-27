@@ -17,8 +17,10 @@
       <%= f.text_field :name %>
     </div>
     <div class="field">
+      <span data-tooltip aria-haspopup="true" class="has-tip" title="Comma seperate keywords">
       <%= f.label :keywords, class: "form-label" %><br>
       <%= f.text_field :keywords %>
+    </span>
     </div>
     <div class="field">
       <%= f.label :description, class: "form-label" %><br>

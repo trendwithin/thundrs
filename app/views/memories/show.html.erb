@@ -16,6 +16,10 @@
       <strong>Description:</strong>
       <%= @memory.description %>
     </p>
+    <p>
+      <strong>Author:</strong>
+      <%= @memory.creator.username %>
+    </p>
     <ul class="button-group">
       <% if policy(@memory).edit? %>
         <%= link_to 'Edit', edit_memory_path(@memory), class: "button round" %>

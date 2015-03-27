@@ -17,7 +17,12 @@
   <div class="small-12 columns panel">
     <div class="row">
       <div class="medium-6 small-12 columns">
+        <% if @personal_memories.count < 1 %>
+          <h2> Add Your First Memory</h2>
+          <%= link_to 'New Memory', new_memory_path, class: "radius button round" %>
+        <% else %>
         <h2>Your Recent Memories</h2>
+        <% end %>
       </div>
 
     </div>
