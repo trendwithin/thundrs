@@ -34,9 +34,7 @@
         <div class="panel">
           <h5><%= memory.name %></h5>
           <h6 class="subheader">
-            <% memory.keywords.split(',').map(&:strip).each do |kw| %>
-              <%= link_to kw, Keyword.find_by(word: kw) %>
-            <% end %>
+            <%= memory.keyword_associations.map{ |kw| link_to kw.word, kw }.join(", ").html_safe %>
           </h6>
         </div>
       </div>
