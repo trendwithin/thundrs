@@ -41,12 +41,9 @@
         <% if current_user.role == 'admin' %>
           <%= link_to 'Delete Comment', @reply, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
+      <% end %>
+      <%= render 'comments/form' %>
       </div>
-    <% end %>
-
-    <%= render 'comments/form' %>
-
-    </div>
       <div class="large-4 columns">
         <% @related_memories.each do |related_memory| %>
           <div class="row">
