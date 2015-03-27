@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
 
   has_many :memories, foreign_key: "creator_id"
   has_many :comments, foreign_key: "author_id"
-  has_many :replies, class_name: "Comment", through: :memories, source: :comments
+  has_many :pending_replies, through: :memories
+  has_many :memories_with_pending_replies,
+           -> { group("memories.id") },
+           through: :pending_replies,
+           source: :memory
 
   validates :username, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }
