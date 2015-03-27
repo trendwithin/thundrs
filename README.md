@@ -1,8 +1,8 @@
-# thundrs
+# [thundrs](http://thundrs.herokuapp.com)
 
 [ ![Codeship Status for trendwithin/thundrs](https://codeship.com/projects/9d087fc0-b3a6-0132-ccb6-3a8f57304aaf/status?branch=master)](https://codeship.com/projects/70274)
-
 [![Code Climate](https://codeclimate.com/github/trendwithin/thundrs/badges/gpa.svg)](https://codeclimate.com/github/trendwithin/thundrs)
+[![Test Coverage](https://codeclimate.com/github/trendwithin/thundrs/badges/coverage.svg)](https://codeclimate.com/github/trendwithin/thundrs)
 
 ## Introduction
 

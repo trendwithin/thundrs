@@ -7,7 +7,8 @@ class Memory < ActiveRecord::Base
            through: :keyword_associations,
            source: :memories
 
-  has_attached_file :image, default_url: "/img-300-placeholder.gif"
+  has_attached_file :image, styles: { large: "600x600>", medium: "450x450>" },
+                            default_url: "/img-300-placeholder.gif"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates :name, presence: true
@@ -19,11 +20,15 @@ class Memory < ActiveRecord::Base
   end
 
   def update_keyword_associations(new_keywords_string, old_keywords_string = "")
-    new_keywords = new_keywords_string.split(",").map(&:strip)
-    old_keywords = old_keywords_string.split(",").map(&:strip)
+    new_keywords = to_keyword_array(new_keywords_string)
+    old_keywords = to_keyword_array(old_keywords_string)
 
     add_keyword_associations(new_keywords - old_keywords)
     remove_keyword_associations(old_keywords - new_keywords)
+  end
+
+  def to_keyword_array(keyword_string)
+    keyword_string.split(",").map(&:strip).map(&:downcase)
   end
 
   def remove_keyword_associations(removed_keyword_strings)
