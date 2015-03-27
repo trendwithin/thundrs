@@ -48,7 +48,7 @@
         <% @related_memories.each do |related_memory| %>
           <div class="row">
             <div class="small-12 columns memory">
-              <%= link_to(image_tag(related_memory.image.url(:medium)), related_memory) %>
+              <%= link_to(image_tag(related_memory.image.url(:medium)), related_memory) %><br />
             </div>
           </div>
        <% end %>
