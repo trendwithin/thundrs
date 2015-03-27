@@ -33,11 +33,19 @@ someone's story.
 Add a comment to another users memory and story.  A chance to share related
 information.
 
-*Future Feature*
+*Bob Wilkens's Future Features*
 Upload related images in the comment section so users can share pictures from
 the same show or event.  Embed Youtube links to share video.
 
+Add Comment to Comments
+
 Add profile pages to view.
+
+Add Mobile Perspective
+
+
+
+
 
 
 
