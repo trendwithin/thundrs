@@ -39,7 +39,7 @@
       <% @current_user.memories.each do |memory| %>
         <div class="left large-4 medium-6 small-12 columns memory" id="memory-<%= memory.id %>">
           <%= link_to image_tag(memory.image.url(:medium), class: "memory-image"), memory %>
-          <div class="panel">
+          <div>
             <h5><%= memory.name %></h5>
             <h6 class="subheader">
               <%= memory.keyword_associations.map{ |kw| link_to kw.word, kw }.join(", ").html_safe %>
