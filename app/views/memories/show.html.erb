@@ -35,7 +35,7 @@
     <div class="large-8 columns">
 
     <h3> Comments: </h3>
-    <% @replies.each do |reply| %>
+    <% @memory.approved_comments.each do |reply| %>
       <div class="panel radius">
         <%= reply.body %> <br />
         <% if current_user.role == 'admin' %>

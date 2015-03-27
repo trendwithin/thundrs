@@ -1,9 +1,14 @@
 class Memory < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
+
   has_many :comments
   has_many :pending_replies,
            -> { where approved: false },
            class_name: "Comment"
+  has_many :approved_comments,
+           -> { where approved: true },
+           class_name: "Comment"
+
   has_and_belongs_to_many :keyword_associations, class_name: "Keyword"
   has_many :related_memories,
            ->(m) { where.not(id: m.id) },
